@@ -356,10 +356,10 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             focusableItems[nextIndex]?.focus()
             e.preventDefault()
           } else if (e.key === "Enter" || e.key === " ") {
-            if (currentIndex !== -1) {
+            if (e.target === e.currentTarget && currentIndex !== -1) {
               focusableItems[currentIndex].click()
+              e.preventDefault()
             }
-            e.preventDefault()
           }
         }}
         onBlur={(e) => {
@@ -382,6 +382,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault()
+                  e.stopPropagation()
                   handlePinButtonClick(e, item)
                 }
               }}>
@@ -401,6 +402,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault()
+                e.stopPropagation()
                 handleSettingButtonClick(e, item)
               }
             }}>
@@ -415,6 +417,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault()
+                e.stopPropagation()
                 confirmDeleteExtension(e, item)
               }
             }}>
@@ -433,6 +436,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault()
+                e.stopPropagation()
                 handleHomeButtonClick(e, item)
               }
             }}>
@@ -447,6 +451,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault()
+                e.stopPropagation()
                 handleOriginSettingButtonClick(e, item)
               }
             }}>
