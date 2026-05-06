@@ -1,4 +1,13 @@
-import React, { Suspense, lazy, memo, useCallback, useEffect, useRef, useState } from "react"
+import React, {
+  Suspense,
+  lazy,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react"
 
 import { MenuOutlined, SearchOutlined, SettingOutlined } from "@ant-design/icons"
 import Icon from "@ant-design/icons/lib/components/Icon"
@@ -70,6 +79,9 @@ const Header = memo((props) => {
     const show = !isShowSearch
     setIsShowSearch(show)
     if (!show) {
+      // Cancel any pending throttled callback so it can't reapply a stale
+      // query after we explicitly clear the search.
+      throttleSearch.cancel?.()
       setSearchText("")
       onSearch?.("")
     }
@@ -99,15 +111,24 @@ const Header = memo((props) => {
     throttleSearch(text)
   }
 
-  const throttleSearch = _.throttle((text) => {
-    onSearch?.(text)
-  }, 500)
+  // Memoize so we have a stable throttled instance whose pending callbacks
+  // can be cancelled when the search bar closes.
+  const throttleSearch = useMemo(
+    () =>
+      _.throttle((text) => {
+        onSearch?.(text)
+      }, 500),
+    [onSearch]
+  )
+
+  useEffect(() => () => throttleSearch.cancel?.(), [throttleSearch])
 
   useEffect(() => {
     const onKeydown = (e) => {
       // Allow Escape to close the search bar regardless of focus, since the
       // input lives inside the popup (focus traps don't apply here).
       if (e.key === "Escape" && isShowSearch) {
+        throttleSearch.cancel?.()
         setIsShowSearch(false)
         setSearchText("")
         onSearch?.("")
@@ -147,7 +168,7 @@ const Header = memo((props) => {
     return () => {
       document.removeEventListener("keydown", onKeydown)
     }
-  }, [isShowSearch, onSearch, onSettingClick])
+  }, [isShowSearch, onSearch, onSettingClick, throttleSearch])
 
   /**
    * 应用商店搜索
@@ -274,6 +295,7 @@ const Header = memo((props) => {
               role="button"
               tabIndex={0}
               aria-label={layoutLabel}
+              aria-pressed={layout === "grid"}
               onClick={onLayoutClick}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {

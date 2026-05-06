@@ -9,26 +9,24 @@ export const AppListStyle = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-
-    i {
-      width: ${imgSize};
-      margin: 0px ${imgMargin};
-    }
   }
 
-  li {
+  .ext-item {
     margin: var(--em-space-3, 12px) ${imgMargin};
     width: 42px;
     border-radius: var(--em-radius-md, 6px);
     transition: var(--em-transition-hover);
+    text-align: center;
   }
 
-  li:hover {
+  .ext-item:hover {
     background-color: var(--em-bg-hover, transparent);
   }
 
-  .ext-item {
-    text-align: center;
+  .ext-item-spacer {
+    width: ${imgSize};
+    margin: 0px ${imgMargin};
+    list-style: none;
   }
 
   li img {

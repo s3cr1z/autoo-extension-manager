@@ -28,6 +28,16 @@ const IconButton = forwardRef(function IconButton(
   )
 
   if (tooltip) {
+    // Disabled `<button>` elements don't fire mouseenter/leave reliably, so
+    // Tooltip can't show. Wrap in a focusable inline-block span so the
+    // tooltip still appears for disabled icon buttons.
+    if (rest.disabled) {
+      return (
+        <Tooltip title={tooltip} mouseEnterDelay={0.4}>
+          <span style={{ display: "inline-block", cursor: "not-allowed" }}>{button}</span>
+        </Tooltip>
+      )
+    }
     return (
       <Tooltip title={tooltip} mouseEnterDelay={0.4}>
         {button}

@@ -1,9 +1,21 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react"
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState
+} from "react"
 
 import { ConfigProvider, theme as antdTheme } from "antd"
 import { ThemeProvider as StyledThemeProvider } from "styled-components"
 
 import { applyCssVariables, darkTheme, lightTheme } from "./tokens"
+
+// Fall back to useEffect during server-side rendering where useLayoutEffect
+// would warn. The popup/options always run in the browser, but this keeps
+// the provider safe for any future SSR usage.
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect
 
 /**
  * Resolve a "system" / "light" / "dark" mode preference into a concrete boolean.
@@ -74,7 +86,10 @@ export function ThemeProvider({
   // same tokens. Cleanup removes them on unmount or theme switch and also
   // restores any inline body styles we overwrote, so the provider is safe
   // to mount/unmount inside other hosts.
-  useEffect(() => {
+  //
+  // Using useLayoutEffect so dark-mode tokens are applied synchronously
+  // before paint and we avoid a flash of light-default styles.
+  useIsomorphicLayoutEffect(() => {
     const cleanupCssVariables = applyCssVariables(theme)
 
     let previousBackgroundColor

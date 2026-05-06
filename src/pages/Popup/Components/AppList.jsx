@@ -66,7 +66,7 @@ const AppList = memo(({ items }) => {
         })}
 
         {new Array(10).fill("").map((_, index) => (
-          <i key={index} aria-hidden="true"></i>
+          <li key={`spacer-${index}`} className="ext-item-spacer" aria-hidden="true" />
         ))}
       </ul>
     </AppListStyle>

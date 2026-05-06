@@ -18,9 +18,13 @@ function NavItem({ to, className, children, onClick, end, ...rest }) {
       to={to}
       end={end}
       onClick={onClick}
-      className={({ isActive }) =>
-        [className, isActive ? "active" : null].filter(Boolean).join(" ")
-      }
+      className={(navState) => {
+        // Resolve `className` to a string. Callers can pass the same shapes
+        // NavLink supports (string, undefined, or a function-of-navState),
+        // and we always append the `active` class when the link matches.
+        const resolved = typeof className === "function" ? className(navState) : className
+        return [resolved, navState.isActive ? "active" : null].filter(Boolean).join(" ")
+      }}
       {...rest}>
       {({ isActive }) => (
         <span className="em-nav-item-inner">

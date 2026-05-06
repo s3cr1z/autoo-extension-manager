@@ -318,8 +318,8 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             "operation-menu-disable": !itemEnable
           }
         ])}
-        role="menu"
-        aria-label={item.name}
+        role="group"
+        aria-label={`${item.name} ${getLang("actions") || "actions"}`}
         onMouseEnter={handleMenuMouseEnter}
         onMouseLeave={handleMenuMouseLeave}
         ref={menuRef}>
@@ -328,7 +328,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           {canLock && (
             <Space
               className="operation-menu-item"
-              role="menuitem"
+              role="button"
               tabIndex={0}
               aria-label={
                 itemPined
@@ -350,7 +350,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               "operation-menu-item-disabled": !existOptionPage,
               "operation-menu-item": existOptionPage
             })}
-            role="menuitem"
+            role="button"
             tabIndex={0}
             aria-label={`${getLang("setting_title") || "Settings"}: ${item.name}`}
             aria-disabled={!existOptionPage}
@@ -375,7 +375,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           </Popconfirm> */}
           <Space
             className="operation-menu-item"
-            role="menuitem"
+            role="button"
             tabIndex={0}
             aria-label={`${getLang("delete") || "Delete"}: ${item.name}`}
             onClick={(e) => confirmDeleteExtension(e, item)}
@@ -392,7 +392,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               "operation-menu-item-disabled": !existHomePage,
               "operation-menu-item": existHomePage
             })}
-            role="menuitem"
+            role="button"
             tabIndex={0}
             aria-label={`${getLang("home_page") || "Open homepage"}: ${item.name}`}
             aria-disabled={!existHomePage}
@@ -407,7 +407,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           </Space>
           <Space
             className="operation-menu-item"
-            role="menuitem"
+            role="button"
             tabIndex={0}
             aria-label={`${getLang("chrome_extension_setting") || "Browser settings"}: ${
               item.name
