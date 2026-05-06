@@ -231,6 +231,9 @@ function Scene() {
         aria-pressed={item.id === selectedScene?.id}
         onClick={onSceneItemClick}
         onKeyDown={(e) => {
+          if (e.target !== e.currentTarget) {
+            return
+          }
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault()
             onSceneItemClick()
@@ -255,7 +258,7 @@ function Scene() {
         <h3 className="scene-item-name">{item.name}</h3>
         <Switch
           size="small"
-          aria-label={`${getLang("scene_current_active") || "Activate scene"} ${item.name}`}
+          aria-label={`${getLang("scene_current_active")} ${item.name}`}
           checked={item.isActive}
           onChange={(e) => onActiveChange(e, item)}
         />

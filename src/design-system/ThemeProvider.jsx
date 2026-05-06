@@ -63,10 +63,24 @@ export function ThemeProvider({
   const [storedMode, setStoredMode] = useState(mode)
 
   useEffect(() => {
-    if (typeof isDarkModeProp === "boolean") return
+    let canceled = false
+
+    if (typeof isDarkModeProp === "boolean") {
+      setStoredMode(mode)
+      return () => {
+        canceled = true
+      }
+    }
+
     storage.options.getAll().then((options) => {
-      setStoredMode(options?.setting?.darkMode ?? mode)
+      if (!canceled) {
+        setStoredMode(options?.setting?.darkMode ?? mode)
+      }
     })
+
+    return () => {
+      canceled = true
+    }
   }, [mode, isDarkModeProp])
 
   // React to mode / explicit-prop changes.

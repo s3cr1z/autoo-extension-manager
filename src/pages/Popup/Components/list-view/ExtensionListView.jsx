@@ -3,6 +3,7 @@ import React, { memo, useEffect, useState } from "react"
 import classNames from "classnames"
 import { styled } from "styled-components"
 
+import { getLang } from ".../utils/utils"
 import { usePopupExtensions } from "../../utils/usePopupExtensions"
 import ExtensionListItem from "./ExtensionListItem"
 
@@ -26,7 +27,7 @@ const ExtensionList = memo(({ extensions, options }) => {
   }, [items])
 
   return (
-    <Style role="list" aria-label="Extensions">
+    <Style role="list" aria-label={getLang("a11y_extensions")}>
       {showItems.map((item) => {
         return (
           <li key={item.id}>

@@ -8,6 +8,7 @@ import "./index.css"
 
 import { ThemeProvider } from ".../design-system/ThemeProvider"
 import storage from ".../storage/sync"
+import { getLang } from ".../utils/utils"
 import About from "./about/About.jsx"
 import GroupManagement from "./group/IndexGroup.jsx"
 import ExtensionHistoryIndex from "./history/ExtensionHistoryIndex"
@@ -57,7 +58,7 @@ function Options() {
       <div
         role="status"
         aria-live="polite"
-        aria-label="Loading settings"
+        aria-label={getLang("a11y_loading_settings")}
         style={{
           display: "flex",
           alignItems: "center",
@@ -76,7 +77,7 @@ function Options() {
           <Navigation></Navigation>
         </div>
 
-        <main className="option-content" aria-label="Settings content">
+        <main className="option-content" aria-label={getLang("a11y_settings_content")}>
           <Routes>
             <Route path="/" element={<Navigate to="/about" replace />}></Route>
             <Route path="/about" element={<About />} />

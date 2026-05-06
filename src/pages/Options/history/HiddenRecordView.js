@@ -31,7 +31,7 @@ const HiddenRecordView = memo(({ records, hiddenExtensionIds, recover }) => {
             className="hidden-record-close"
             role="button"
             tabIndex={0}
-            aria-label={`${getLang("recover") || "Recover"} ${item.name}`}
+            aria-label={`${getLang("a11y_recover")} ${item.name}`}
             onClick={(e) => menuItemOnClick(e, item)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {

@@ -247,13 +247,13 @@ const Header = memo((props) => {
     )
   }
 
-  const searchLabel = getLang("setting_popup_setting_search") || "Search extensions"
+  const searchLabel = getLang("setting_popup_setting_search")
   const layoutLabel =
     layout === "grid"
-      ? getLang("popup_layout_switch_to_list") || "Switch to list view"
-      : getLang("popup_layout_switch_to_grid") || "Switch to grid view"
-  const settingLabel = getLang("setting_title") || "Open settings"
-  const moreLabel = getLang("more_operation") || "More operations"
+      ? getLang("popup_layout_switch_to_list")
+      : getLang("popup_layout_switch_to_grid")
+  const settingLabel = getLang("setting_title")
+  const moreLabel = getLang("more_operation")
 
   return (
     <>

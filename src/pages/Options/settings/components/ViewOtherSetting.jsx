@@ -53,10 +53,10 @@ const ViewOtherSetting = memo(({ setting, onSettingChange }) => {
       </div>
 
       <div className="setting-item">
-        <span>{getLang("setting_use_new_ui") || "Use new UI"}</span>
+        <span>{getLang("setting_use_new_ui")}</span>
         <Switch
           size="small"
-          aria-label={getLang("setting_use_new_ui") || "Use new UI"}
+          aria-label={getLang("setting_use_new_ui")}
           checked={useNewUI}
           onChange={(value) => onSettingChange(value, setUseNewUI, "useNewUI")}
         />

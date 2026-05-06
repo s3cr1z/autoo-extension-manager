@@ -61,7 +61,9 @@ const ExtensionOperationItem = memo(({ record, options }) => {
 
       <Switch
         size="small"
-        aria-label={`${itemEnable ? "Disable" : "Enable"} ${record.name}`}
+        aria-label={`${itemEnable ? getLang("disable_extension") : getLang("enable_extension")} ${
+          record.name
+        }`}
         checked={itemEnable}
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => onSwitchChange(e, record)}></Switch>
@@ -72,14 +74,14 @@ const ExtensionOperationItem = memo(({ record, options }) => {
           "operation-menu-item": record.optionsUrl
         })}
         disabled={!record.optionsUrl}
-        tooltip={`${getLang("setting_title") || "Settings"}: ${record.name}`}
+        tooltip={`${getLang("setting_title")}: ${record.name}`}
         icon={<SettingOutlined />}
         onClick={(e) => handleSettingButtonClick(e, record)}
       />
 
       <IconButton
         className="operation-menu-item"
-        tooltip={`${getLang("delete") || "Delete"}: ${record.name}`}
+        tooltip={`${getLang("delete")}: ${record.name}`}
         icon={<DeleteOutlined />}
         onClick={(e) => confirmDeleteExtension(e, record)}
       />
@@ -90,7 +92,7 @@ const ExtensionOperationItem = memo(({ record, options }) => {
           "operation-menu-item": record.homepageUrl
         })}
         disabled={!record.homepageUrl}
-        tooltip={`${getLang("home_page") || "Open homepage"}: ${record.name}`}
+        tooltip={`${getLang("a11y_open_homepage")}: ${record.name}`}
         icon={<HomeOutlined />}
         onClick={(e) => handleHomeButtonClick(e, record)}
       />

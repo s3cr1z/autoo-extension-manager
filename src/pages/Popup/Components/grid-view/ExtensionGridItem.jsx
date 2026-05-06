@@ -246,8 +246,18 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
         ])}
         role="button"
         tabIndex={0}
-        aria-label={`${itemEnable ? "Disable" : "Enable"} ${item.name}`}
+        aria-label={`${itemEnable ? getLang("disable_extension") : getLang("enable_extension")} ${
+          item.name
+        }`}
         aria-pressed={itemEnable}
+        onFocus={() => {
+          setIsMenuShow(true)
+        }}
+        onBlur={(e) => {
+          if (!containerRef.current?.contains(e.relatedTarget)) {
+            setIsMenuShow(false)
+          }
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault()
@@ -281,7 +291,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           <Badge
             tone="success"
             className="item-pined-dot"
-            srLabel={getLang("fixed_extension_dot_tip") || "Pinned"}
+            srLabel={getLang("fixed_extension_dot_tip")}
           />
         )}
       </div>
@@ -319,7 +329,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           }
         ])}
         role="menu"
-        aria-label={`${item.name} ${getLang("actions") || "actions"}`}
+        aria-label={`${item.name} ${getLang("a11y_actions")}`}
         onKeyDown={(e) => {
           const focusableItems = Array.from(
             menuRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') ?? []
@@ -332,13 +342,29 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             containerRef.current?.querySelector(".grid-display-item")?.focus()
             e.preventDefault()
           } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-            focusableItems[(currentIndex + 1) % focusableItems.length]?.focus()
+            if (focusableItems.length === 0) {
+              return
+            }
+            const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % focusableItems.length
+            focusableItems[nextIndex]?.focus()
             e.preventDefault()
           } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-            focusableItems[
-              (currentIndex - 1 + focusableItems.length) % focusableItems.length
-            ]?.focus()
+            if (focusableItems.length === 0) {
+              return
+            }
+            const nextIndex = currentIndex <= 0 ? focusableItems.length - 1 : currentIndex - 1
+            focusableItems[nextIndex]?.focus()
             e.preventDefault()
+          } else if (e.key === "Enter" || e.key === " ") {
+            if (currentIndex !== -1) {
+              focusableItems[currentIndex].click()
+            }
+            e.preventDefault()
+          }
+        }}
+        onBlur={(e) => {
+          if (!containerRef.current?.contains(e.relatedTarget)) {
+            setIsMenuShow(false)
           }
         }}
         onMouseEnter={handleMenuMouseEnter}
@@ -351,11 +377,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               className="operation-menu-item"
               role="menuitem"
               tabIndex={0}
-              aria-label={
-                itemPined
-                  ? getLang("unpin_extension") || "Unpin from current group"
-                  : getLang("pin_extension") || "Pin to current group"
-              }
+              aria-label={itemPined ? getLang("unpin_extension") : getLang("pin_extension")}
               onClick={(e) => handlePinButtonClick(e, item)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -373,7 +395,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             })}
             role="menuitem"
             tabIndex={existOptionPage ? 0 : -1}
-            aria-label={`${getLang("setting_title") || "Settings"}: ${item.name}`}
+            aria-label={`${getLang("setting_title")}: ${item.name}`}
             aria-disabled={!existOptionPage}
             onClick={(e) => handleSettingButtonClick(e, item)}
             onKeyDown={(e) => {
@@ -388,7 +410,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             className="operation-menu-item"
             role="menuitem"
             tabIndex={0}
-            aria-label={`${getLang("delete") || "Delete"}: ${item.name}`}
+            aria-label={`${getLang("delete")}: ${item.name}`}
             onClick={(e) => confirmDeleteExtension(e, item)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -405,7 +427,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             })}
             role="menuitem"
             tabIndex={existHomePage ? 0 : -1}
-            aria-label={`${getLang("home_page") || "Open homepage"}: ${item.name}`}
+            aria-label={`${getLang("a11y_open_homepage")}: ${item.name}`}
             aria-disabled={!existHomePage}
             onClick={(e) => handleHomeButtonClick(e, item)}
             onKeyDown={(e) => {
@@ -420,9 +442,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             className="operation-menu-item"
             role="menuitem"
             tabIndex={0}
-            aria-label={`${getLang("chrome_extension_setting") || "Browser settings"}: ${
-              item.name
-            }`}
+            aria-label={`${getLang("a11y_browser_settings")}: ${item.name}`}
             onClick={(e) => handleOriginSettingButtonClick(e, item)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {

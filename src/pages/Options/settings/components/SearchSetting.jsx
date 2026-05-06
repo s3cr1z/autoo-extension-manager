@@ -6,7 +6,7 @@ import {
   QuestionCircleOutlined,
   WindowsOutlined
 } from "@ant-design/icons"
-import { Switch, Tooltip } from "antd"
+import { Dropdown, Switch, Tooltip } from "antd"
 import styled from "styled-components"
 
 import { isEdgePackage } from ".../utils/channelHelper"

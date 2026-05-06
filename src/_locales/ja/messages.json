@@ -844,5 +844,101 @@
   },
   "end": {
     "message": "終了"
+  },
+  "a11y_actions": {
+    "message": "操作"
+  },
+  "a11y_pinned_extensions": {
+    "message": "固定済み拡張機能"
+  },
+  "a11y_enabled_extensions": {
+    "message": "有効な拡張機能"
+  },
+  "a11y_disabled_extensions": {
+    "message": "無効な拡張機能"
+  },
+  "a11y_extensions": {
+    "message": "拡張機能"
+  },
+  "a11y_expand": {
+    "message": "展開"
+  },
+  "a11y_collapse": {
+    "message": "折りたたむ"
+  },
+  "a11y_loading_extensions": {
+    "message": "拡張機能を読み込み中"
+  },
+  "a11y_loading_settings": {
+    "message": "設定を読み込み中"
+  },
+  "a11y_settings_content": {
+    "message": "設定内容"
+  },
+  "a11y_search": {
+    "message": "検索"
+  },
+  "a11y_hide": {
+    "message": "非表示"
+  },
+  "a11y_recover": {
+    "message": "復元"
+  },
+  "a11y_edit": {
+    "message": "編集"
+  },
+  "a11y_duplicate": {
+    "message": "複製"
+  },
+  "a11y_open_homepage": {
+    "message": "ホームページを開く"
+  },
+  "a11y_browser_settings": {
+    "message": "ブラウザー設定"
+  },
+  "a11y_enable_rule": {
+    "message": "ルールを有効化"
+  },
+  "a11y_disable_rule": {
+    "message": "ルールを無効化"
+  },
+  "a11y_delete_rule_confirm": {
+    "message": "このルールを削除してもよろしいですか？"
+  },
+  "app_list_title": {
+    "message": "アプリ"
+  },
+  "about_storage_usage_tip": {
+    "message": "ストレージ使用量ヘルプ"
+  },
+  "no_extensions_found": {
+    "message": "一致する拡張機能がありません"
+  },
+  "no_extensions_found_hint": {
+    "message": "別の検索語を試してください。"
+  },
+  "fixed_extension_dot_tip": {
+    "message": "固定済み"
+  },
+  "pin_extension": {
+    "message": "現在のグループに固定"
+  },
+  "unpin_extension": {
+    "message": "現在のグループから固定解除"
+  },
+  "history_delete_all_confirm": {
+    "message": "すべての履歴レコードを削除してもよろしいですか？"
+  },
+  "launch_app": {
+    "message": "起動"
+  },
+  "popup_layout_switch_to_list": {
+    "message": "リスト表示に切り替え"
+  },
+  "popup_layout_switch_to_grid": {
+    "message": "グリッド表示に切り替え"
+  },
+  "more_operation": {
+    "message": "その他の操作"
   }
 }

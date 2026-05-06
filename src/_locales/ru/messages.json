@@ -844,5 +844,101 @@
   },
   "end": {
     "message": "Окончено"
+  },
+  "a11y_actions": {
+    "message": "Действия"
+  },
+  "a11y_pinned_extensions": {
+    "message": "Закрепленные расширения"
+  },
+  "a11y_enabled_extensions": {
+    "message": "Включенные расширения"
+  },
+  "a11y_disabled_extensions": {
+    "message": "Отключенные расширения"
+  },
+  "a11y_extensions": {
+    "message": "Расширения"
+  },
+  "a11y_expand": {
+    "message": "Развернуть"
+  },
+  "a11y_collapse": {
+    "message": "Свернуть"
+  },
+  "a11y_loading_extensions": {
+    "message": "Загрузка расширений"
+  },
+  "a11y_loading_settings": {
+    "message": "Загрузка настроек"
+  },
+  "a11y_settings_content": {
+    "message": "Содержимое настроек"
+  },
+  "a11y_search": {
+    "message": "Поиск"
+  },
+  "a11y_hide": {
+    "message": "Скрыть"
+  },
+  "a11y_recover": {
+    "message": "Восстановить"
+  },
+  "a11y_edit": {
+    "message": "Редактировать"
+  },
+  "a11y_duplicate": {
+    "message": "Дублировать"
+  },
+  "a11y_open_homepage": {
+    "message": "Открыть домашнюю страницу"
+  },
+  "a11y_browser_settings": {
+    "message": "Настройки браузера"
+  },
+  "a11y_enable_rule": {
+    "message": "Включить правило"
+  },
+  "a11y_disable_rule": {
+    "message": "Отключить правило"
+  },
+  "a11y_delete_rule_confirm": {
+    "message": "Вы уверены, что хотите удалить это правило?"
+  },
+  "app_list_title": {
+    "message": "Приложения"
+  },
+  "about_storage_usage_tip": {
+    "message": "Справка по использованию хранилища"
+  },
+  "no_extensions_found": {
+    "message": "Расширения не найдены"
+  },
+  "no_extensions_found_hint": {
+    "message": "Попробуйте другой поисковый запрос."
+  },
+  "fixed_extension_dot_tip": {
+    "message": "Закреплено"
+  },
+  "pin_extension": {
+    "message": "Закрепить в текущей группе"
+  },
+  "unpin_extension": {
+    "message": "Открепить от текущей группы"
+  },
+  "history_delete_all_confirm": {
+    "message": "Вы уверены, что хотите удалить все записи истории?"
+  },
+  "launch_app": {
+    "message": "Запустить"
+  },
+  "popup_layout_switch_to_list": {
+    "message": "Переключить на список"
+  },
+  "popup_layout_switch_to_grid": {
+    "message": "Переключить на сетку"
+  },
+  "more_operation": {
+    "message": "Дополнительные действия"
   }
 }

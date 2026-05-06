@@ -155,7 +155,9 @@ ${navigator.userAgent}`
           <Tag
             className="badges-tag"
             icon={<GithubOutlined />}
+            role="link"
             tabIndex={0}
+            aria-label="GitHub"
             onClick={openGithub}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -163,11 +165,12 @@ ${navigator.userAgent}`
                 openGithub()
               }
             }}>
-            Github
+            GitHub
           </Tag>
           <Tag
             className="badges-tag"
             icon={<StarOutlined />}
+            role="link"
             tabIndex={0}
             onClick={openRatePage}
             onKeyDown={(e) => {
@@ -181,6 +184,7 @@ ${navigator.userAgent}`
           <Tag
             className="badges-tag"
             icon={<HeartOutlined />}
+            role="link"
             tabIndex={0}
             onClick={openSponsorPage}
             onKeyDown={(e) => {
@@ -200,7 +204,7 @@ ${navigator.userAgent}`
           className="storage-detail-tip-icon"
           role="button"
           tabIndex={0}
-          aria-label={getLang("about_storage_usage_tip") || "Storage usage help"}
+          aria-label={getLang("about_storage_usage_tip")}
           onClick={openStorageExplainPage}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {

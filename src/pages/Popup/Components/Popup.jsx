@@ -126,8 +126,8 @@ function IndexPopup({ originExtensions, options, params }) {
         <EmptyState
           role="status"
           aria-live="polite"
-          title={getLang("no_extensions_found") || "No extensions match"}
-          description={getLang("no_extensions_found_hint") || "Try a different search term."}
+          title={getLang("no_extensions_found")}
+          description={getLang("no_extensions_found_hint")}
         />
       )
     }
@@ -181,7 +181,7 @@ function IndexPopup({ originExtensions, options, params }) {
           "extension-container",
           { "extension-container-grid": layout === "grid" }
         ])}
-        aria-label="Extensions">
+        aria-label={getLang("a11y_extensions")}>
         {getExtensionDisplay()}
         {isShowAppExtension && <AppList items={appExtensions}></AppList>}
       </main>

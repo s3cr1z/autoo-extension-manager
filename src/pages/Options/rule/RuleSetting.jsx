@@ -16,6 +16,7 @@ function RuleSetting() {
 
   // 所有的规则配置项，列表
   const [ruleConfigs, setRuleConfigs] = useState([])
+  const [ruleConfigsReady, setRuleConfigsReady] = useState(false)
 
   // 用户配置
   const [options, setOptions] = useState({})
@@ -36,6 +37,7 @@ function RuleSetting() {
 
     storage.rule.get().then((list) => {
       setRuleConfigs(list)
+      setRuleConfigsReady(true)
 
       analytics.fireEvent("rule_setting_open", {
         totalCount: list.length,
@@ -90,17 +92,14 @@ function RuleSetting() {
     <RuleSettingStyle>
       <Title title={getLang("rule_title")}></Title>
 
-      {ruleConfigs.length === 0 ? (
+      {ruleConfigsReady && ruleConfigs.length === 0 ? (
         <>
           <ViewRule
             options={options}
             configs={ruleConfigs}
             extensions={extensions}
             operation={operation}></ViewRule>
-          <EmptyState
-            title={getLang("rule_title")}
-            description={getLang("rule_set_match_add") || "Add rule"}
-          />
+          <EmptyState title={getLang("rule_title")} description={getLang("rule_set_match_add")} />
         </>
       ) : (
         <ViewRule

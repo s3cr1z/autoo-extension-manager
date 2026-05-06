@@ -147,7 +147,7 @@ const ExtensionHistory = memo(({ records, hiddenExtensionIds, loading }) => {
               <Space
                 role="button"
                 tabIndex={0}
-                aria-label={`${getLang("search") || "Search"} ${showName}`}
+                aria-label={`${getLang("a11y_search")} ${showName}`}
                 onClick={(e) => solo(e, record)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -160,7 +160,7 @@ const ExtensionHistory = memo(({ records, hiddenExtensionIds, loading }) => {
               <Space
                 role="button"
                 tabIndex={0}
-                aria-label={`${getLang("hide") || "Hide"} ${showName}`}
+                aria-label={`${getLang("a11y_hide")} ${showName}`}
                 onClick={(e) => hide(e, record)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -293,7 +293,7 @@ const ExtensionHistory = memo(({ records, hiddenExtensionIds, loading }) => {
           {/* 清空记录 */}
           <Popconfirm
             title="Clear History Data"
-            description="Are you sure to delete all the history records?"
+            description={getLang("history_delete_all_confirm")}
             onConfirm={confirmClearHistoryRecords}
             okText="Yes"
             cancelText="No">

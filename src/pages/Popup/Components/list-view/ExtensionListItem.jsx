@@ -122,8 +122,10 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
   // 如果存在别名，则显示别名
   const showName = item.__attach__?.alias ? item.__attach__?.alias : item.name
 
-  const enableLabel = `${itemEnable ? "Disable" : "Enable"} ${showName}`
-  const pinnedLabel = getLang("fixed_extension_dot_tip") || "Pinned"
+  const enableLabel = `${
+    itemEnable ? getLang("disable_extension") : getLang("enable_extension")
+  } ${showName}`
+  const pinnedLabel = getLang("fixed_extension_dot_tip")
 
   return (
     <div
@@ -164,14 +166,14 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
     if (!isHover) {
       return null
     } else {
-      const switchLabel = `${itemEnable ? "Disable" : "Enable"} ${showName}`
-      const lockLabel = itemPined
-        ? getLang("unpin_extension") || "Unpin from current group"
-        : getLang("pin_extension") || "Pin to current group"
-      const settingLabel = `${getLang("setting_title") || "Settings"}: ${showName}`
-      const deleteLabel = `${getLang("delete") || "Delete"}: ${showName}`
-      const homeLabel = `${getLang("home_page") || "Open homepage"}: ${showName}`
-      const toolLabel = `${getLang("chrome_extension_setting") || "Browser settings"}: ${showName}`
+      const switchLabel = `${
+        itemEnable ? getLang("disable_extension") : getLang("enable_extension")
+      } ${showName}`
+      const lockLabel = itemPined ? getLang("unpin_extension") : getLang("pin_extension")
+      const settingLabel = `${getLang("setting_title")}: ${showName}`
+      const deleteLabel = `${getLang("delete")}: ${showName}`
+      const homeLabel = `${getLang("a11y_open_homepage")}: ${showName}`
+      const toolLabel = `${getLang("a11y_browser_settings")}: ${showName}`
       return (
         <div className="li-operation">
           <Switch

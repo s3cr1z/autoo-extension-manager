@@ -844,5 +844,101 @@
   },
   "end": {
     "message": "end"
+  },
+  "a11y_actions": {
+    "message": "Actions"
+  },
+  "a11y_pinned_extensions": {
+    "message": "Pinned extensions"
+  },
+  "a11y_enabled_extensions": {
+    "message": "Enabled extensions"
+  },
+  "a11y_disabled_extensions": {
+    "message": "Disabled extensions"
+  },
+  "a11y_extensions": {
+    "message": "Extensions"
+  },
+  "a11y_expand": {
+    "message": "Expand"
+  },
+  "a11y_collapse": {
+    "message": "Collapse"
+  },
+  "a11y_loading_extensions": {
+    "message": "Loading extensions"
+  },
+  "a11y_loading_settings": {
+    "message": "Loading settings"
+  },
+  "a11y_settings_content": {
+    "message": "Settings content"
+  },
+  "a11y_search": {
+    "message": "Search"
+  },
+  "a11y_hide": {
+    "message": "Hide"
+  },
+  "a11y_recover": {
+    "message": "Recover"
+  },
+  "a11y_edit": {
+    "message": "Edit"
+  },
+  "a11y_duplicate": {
+    "message": "Duplicate"
+  },
+  "a11y_open_homepage": {
+    "message": "Open homepage"
+  },
+  "a11y_browser_settings": {
+    "message": "Browser settings"
+  },
+  "a11y_enable_rule": {
+    "message": "Enable rule"
+  },
+  "a11y_disable_rule": {
+    "message": "Disable rule"
+  },
+  "a11y_delete_rule_confirm": {
+    "message": "Are you sure to delete this rule?"
+  },
+  "app_list_title": {
+    "message": "Apps"
+  },
+  "about_storage_usage_tip": {
+    "message": "Storage usage help"
+  },
+  "no_extensions_found": {
+    "message": "No extensions match"
+  },
+  "no_extensions_found_hint": {
+    "message": "Try a different search term."
+  },
+  "fixed_extension_dot_tip": {
+    "message": "Pinned"
+  },
+  "pin_extension": {
+    "message": "Pin to current group"
+  },
+  "unpin_extension": {
+    "message": "Unpin from current group"
+  },
+  "history_delete_all_confirm": {
+    "message": "Are you sure to delete all the history records?"
+  },
+  "launch_app": {
+    "message": "Launch"
+  },
+  "popup_layout_switch_to_list": {
+    "message": "Switch to list view"
+  },
+  "popup_layout_switch_to_grid": {
+    "message": "Switch to grid view"
+  },
+  "more_operation": {
+    "message": "More operations"
   }
 }

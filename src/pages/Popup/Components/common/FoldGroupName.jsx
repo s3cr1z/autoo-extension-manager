@@ -5,6 +5,8 @@ import { Space } from "antd"
 import localforage from "localforage"
 import styled from "styled-components"
 
+import { getLang } from ".../utils/utils"
+
 const groupExpandForage = localforage.createInstance({
   driver: localforage.LOCALSTORAGE,
   name: "LocalOptions",
@@ -39,7 +41,7 @@ const FoldGroupName = memo(({ group, onFoldChanged }) => {
     }
   }
 
-  const label = `${fold ? "Expand" : "Collapse"} ${group.name}`
+  const label = `${fold ? getLang("a11y_expand") : getLang("a11y_collapse")} ${group.name}`
 
   return (
     <Style>

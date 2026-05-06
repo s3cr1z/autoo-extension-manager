@@ -13,28 +13,28 @@ const OperationView = memo((props) => {
     <Style>
       <div className="operation">
         <IconButton
-          tooltip={getLang("edit") || "Edit"}
+          tooltip={getLang("a11y_edit")}
           icon={<FormOutlined />}
           onClick={() => onEdit?.(record)}
         />
         <IconButton
-          tooltip={getLang("duplicate") || "Duplicate"}
+          tooltip={getLang("a11y_duplicate")}
           icon={<CopyOutlined />}
           onClick={() => onDuplicate?.(record)}
         />
 
         <Popconfirm
           title={getLang("rule_action_delete_action")}
-          description="Are you sure to delete this rule?"
+          description={getLang("a11y_delete_rule_confirm")}
           onConfirm={() => onDelete?.(record)}
-          okText="Yes"
-          cancelText="Cancel">
-          <IconButton tooltip={getLang("delete") || "Delete"} icon={<DeleteOutlined />} />
+          okText={getLang("delete")}
+          cancelText={getLang("cancel")}>
+          <IconButton tooltip={getLang("delete")} icon={<DeleteOutlined />} />
         </Popconfirm>
 
         <Switch
           size="small"
-          aria-label={`${record.enable ? "Disable" : "Enable"} rule`}
+          aria-label={record.enable ? getLang("a11y_disable_rule") : getLang("a11y_enable_rule")}
           checked={record.enable}
           onChange={(e) => onEnabled?.(record, e)}></Switch>
       </div>
