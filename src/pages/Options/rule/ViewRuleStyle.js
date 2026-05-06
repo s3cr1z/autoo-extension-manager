@@ -1,15 +1,15 @@
 import { styled } from "styled-components"
 
 const Style = styled.div`
-  margin-right: 20px;
+  margin-right: var(--em-space-5, 20px);
 
   .ant-table-cell {
-    font-size: 14px;
+    font-size: var(--em-font-size-base, 14px);
   }
 
   .error-text {
-    font-weight: 700;
-    color: #f5222d;
+    font-weight: var(--em-font-weight-bold, 700);
+    color: var(--em-color-danger, #f5222d);
   }
 
   .rule-row-selected {
@@ -29,12 +29,11 @@ const Style = styled.div`
   }
 
   .button-group {
-    margin-top: 10px;
-    margin-bottom: 20px;
-
-    & > * {
-      margin-right: 10px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--em-space-3, 10px);
+    margin-top: var(--em-space-3, 10px);
+    margin-bottom: var(--em-space-5, 20px);
 
     button {
       width: 100px;

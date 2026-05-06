@@ -26,7 +26,7 @@ const ExtensionList = memo(({ extensions, options }) => {
   }, [items])
 
   return (
-    <Style>
+    <Style role="list" aria-label="Extensions">
       {showItems.map((item) => {
         return (
           <li key={item.id}>

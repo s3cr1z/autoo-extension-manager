@@ -5,36 +5,35 @@ export const ExtensionManageStyle = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: var(--em-space-2, 10px);
+    margin-bottom: var(--em-space-3, 10px);
   }
 
   .extension-manage-tools-left {
     display: flex;
     align-items: baseline;
+    gap: var(--em-space-2, 10px);
 
     .search {
       width: 300px;
-      margin-right: 10px;
     }
 
     .settings-checkbox {
-      margin: 0 0 0 10px;
+      margin: 0;
     }
   }
 
   .extension-manage-tools-right {
     display: flex;
     align-items: baseline;
+    gap: var(--em-space-3, 12px);
 
-    margin-right: 24px;
-
-    & > a {
-      margin-right: 12px;
-    }
+    margin-right: var(--em-space-6, 24px);
   }
 
   .ant-table-wrapper {
-    margin-right: 5px;
+    margin-right: var(--em-space-1, 5px);
   }
 
   .column-index {

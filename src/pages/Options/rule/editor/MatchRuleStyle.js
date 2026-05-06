@@ -2,11 +2,11 @@ import { styled } from "styled-components"
 
 const Style = styled.div`
   .trigger-operation-settings {
-    margin: 5px 0;
+    margin: var(--em-space-1, 5px) 0;
   }
 
   .trigger-relationship {
-    margin-left: 10px;
+    margin-left: var(--em-space-3, 10px);
   }
 
   .trigger-hidden {

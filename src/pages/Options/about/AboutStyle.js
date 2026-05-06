@@ -5,8 +5,8 @@ export const AboutStyle = styled.div`
     display: flex;
     align-items: center;
 
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: var(--em-space-8, 30px);
+    margin-bottom: var(--em-space-12, 50px);
 
     img {
       width: 64px;
@@ -14,21 +14,21 @@ export const AboutStyle = styled.div`
     }
 
     .header-icon-text {
-      margin-left: 20px;
+      margin-left: var(--em-space-5, 20px);
       h3 {
-        font-size: 18px;
-        margin-bottom: 4px;
+        font-size: var(--em-font-size-xl, 18px);
+        margin-bottom: var(--em-space-1, 4px);
       }
       span {
-        font-size: 14px;
+        font-size: var(--em-font-size-base, 14px);
       }
     }
   }
 
   .content-button {
-    & > * {
-      margin-right: 10px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--em-space-2, 10px);
   }
 
   .footer {
@@ -62,14 +62,14 @@ export const AboutStyle = styled.div`
     display: inline-flex;
     align-items: center;
 
-    margin-top: 20px;
-    padding-top: 5px;
-    border-top: 1px solid ${(props) => props.theme.border3};
+    margin-top: var(--em-space-5, 20px);
+    padding-top: var(--em-space-1, 5px);
+    border-top: 1px solid var(--em-border-default, ${(props) => props.theme.border3});
 
     .storage-detail-tip-icon {
-      margin-left: 5px;
+      margin-left: var(--em-space-1, 5px);
       &:hover {
-        color: ${(props) => props.theme.fg6};
+        color: var(--em-text-secondary, ${(props) => props.theme.fg6});
       }
     }
   }

@@ -8,11 +8,12 @@ import {
   ToolOutlined,
   UnlockOutlined
 } from "@ant-design/icons"
-import { Button, Popconfirm, Switch, message } from "antd"
+import { Button, Popconfirm, Switch, Tooltip, message } from "antd"
 import classNames from "classnames"
 
 import "./ExtensionListItem.css"
 
+import Badge from ".../design-system/components/Badge"
 import { ManualEnableCounter } from ".../storage/local/ManualEnableCounter"
 import { getHomepageUrl, getIcon, getOriginSettingUrl } from ".../utils/extensionHelper.js"
 import { getLang } from ".../utils/utils"
@@ -121,6 +122,9 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
   // 如果存在别名，则显示别名
   const showName = item.__attach__?.alias ? item.__attach__?.alias : item.name
 
+  const enableLabel = `${itemEnable ? "Disable" : "Enable"} ${showName}`
+  const pinnedLabel = getLang("fixed_extension_dot_tip") || "Pinned"
+
   return (
     <div
       onMouseEnter={(e) => onItemMouseOver(e)}
@@ -133,10 +137,23 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
 
       <div className="list-item-img-box">
         <img src={getIcon(item, 128)} alt="" />
-        {itemPined && isShowDotOfFixedExtension && <i className="list-item-fix-dot"></i>}
+        {itemPined && isShowDotOfFixedExtension && (
+          <Badge tone="success" srLabel={pinnedLabel} className="list-item-fix-dot" />
+        )}
       </div>
 
-      <span className="ext-name" onClick={(e) => onItemNameClick(e, item)}>
+      <span
+        className="ext-name"
+        role="button"
+        tabIndex={0}
+        aria-label={enableLabel}
+        onClick={(e) => onItemNameClick(e, item)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            onItemNameClick(e, item)
+          }
+        }}>
         {showName}
       </span>
       {buildOperationButton(isHover || isShowOperationButton)}
@@ -147,28 +164,43 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
     if (!isHover) {
       return null
     } else {
+      const switchLabel = `${itemEnable ? "Disable" : "Enable"} ${showName}`
+      const lockLabel = itemPined
+        ? getLang("unpin_extension") || "Unpin from current group"
+        : getLang("pin_extension") || "Pin to current group"
+      const settingLabel = `${getLang("setting_title") || "Settings"}: ${showName}`
+      const deleteLabel = `${getLang("delete") || "Delete"}: ${showName}`
+      const homeLabel = `${getLang("home_page") || "Open homepage"}: ${showName}`
+      const toolLabel = `${getLang("chrome_extension_setting") || "Browser settings"}: ${showName}`
       return (
         <div className="li-operation">
           <Switch
             className="switch"
             size="small"
             checked={itemEnable}
+            aria-label={switchLabel}
             onChange={(e) => onSwitchChange(e, item)}></Switch>
 
           {canLock && (
-            <Button
-              type="text"
-              icon={itemPined ? <LockOutlined /> : <UnlockOutlined />}
-              onClick={() => setItemPined(!itemPined)}
-            />
+            <Tooltip title={lockLabel} mouseEnterDelay={0.4}>
+              <Button
+                type="text"
+                aria-label={lockLabel}
+                icon={itemPined ? <LockOutlined /> : <UnlockOutlined />}
+                onClick={() => setItemPined(!itemPined)}
+              />
+            </Tooltip>
           )}
 
-          <Button
-            disabled={!existOptionPage}
-            type="text"
-            icon={<SettingOutlined />}
-            onClick={(e) => handleSettingButtonClick(e, item)}
-          />
+          <Tooltip title={settingLabel} mouseEnterDelay={0.4}>
+            <Button
+              disabled={!existOptionPage}
+              type="text"
+              aria-label={settingLabel}
+              icon={<SettingOutlined />}
+              onClick={(e) => handleSettingButtonClick(e, item)}
+            />
+          </Tooltip>
 
           {/* <Popconfirm
             title={getLang("remove_extension")}
@@ -181,23 +213,32 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
             <Button type="text" icon={<DeleteOutlined />} />
           </Popconfirm> */}
 
-          <Button
-            type="text"
-            icon={<DeleteOutlined />}
-            onClick={(e) => confirmDeleteExtension(e, item)}
-          />
+          <Tooltip title={deleteLabel} mouseEnterDelay={0.4}>
+            <Button
+              type="text"
+              aria-label={deleteLabel}
+              icon={<DeleteOutlined />}
+              onClick={(e) => confirmDeleteExtension(e, item)}
+            />
+          </Tooltip>
 
-          <Button
-            disabled={!existHomePage}
-            type="text"
-            icon={<HomeOutlined />}
-            onClick={(e) => handleHomeButtonClick(e, item)}
-          />
+          <Tooltip title={homeLabel} mouseEnterDelay={0.4}>
+            <Button
+              disabled={!existHomePage}
+              type="text"
+              aria-label={homeLabel}
+              icon={<HomeOutlined />}
+              onClick={(e) => handleHomeButtonClick(e, item)}
+            />
+          </Tooltip>
 
-          <Button
-            type="text"
-            icon={<ToolOutlined />}
-            onClick={(e) => handleOriginSettingButtonClick(e, item)}></Button>
+          <Tooltip title={toolLabel} mouseEnterDelay={0.4}>
+            <Button
+              type="text"
+              aria-label={toolLabel}
+              icon={<ToolOutlined />}
+              onClick={(e) => handleOriginSettingButtonClick(e, item)}></Button>
+          </Tooltip>
         </div>
       )
     }

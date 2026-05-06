@@ -5,32 +5,35 @@ const Style = styled.div`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--em-space-2, 10px);
 
-    margin-bottom: 10px;
+    margin-bottom: var(--em-space-3, 10px);
   }
 
   .history-manage-tools-left {
     display: flex;
     align-items: baseline;
+    gap: var(--em-space-2, 10px);
 
     .search {
       width: 300px;
-      margin-right: 10px;
     }
   }
 
   .history-manage-tools-right {
-    margin: 0 20px 0 0;
+    margin: 0 var(--em-space-5, 20px) 0 0;
 
     display: flex;
+    gap: var(--em-space-2, 10px);
   }
 
   .setting-operation-item {
-    margin: 0 0 0 10px;
+    margin: 0 0 0 var(--em-space-2, 10px);
   }
 
   .ant-table-wrapper {
-    margin-right: 5px;
+    margin-right: var(--em-space-1, 5px);
   }
 
   .column-index {
@@ -63,15 +66,15 @@ const Style = styled.div`
     position: absolute;
     top: -2px;
     right: 2px;
-    font-size: 16px;
-    color: ${(props) => props.theme.nav_link};
+    font-size: var(--em-font-size-lg, 16px);
+    color: var(--em-color-primary, ${(props) => props.theme.nav_link});
 
     & > .ant-space:nth-child(1) {
-      margin-right: 12px;
+      margin-right: var(--em-space-3, 12px);
     }
 
     :hover {
-      color: #9e1068;
+      color: var(--em-color-danger, #9e1068);
     }
   }
 

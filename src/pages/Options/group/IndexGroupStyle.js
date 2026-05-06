@@ -17,7 +17,7 @@ export const GroupStyle = styled.div`
 
   .right-box {
     flex-grow: 1;
-    margin-left: 10px;
+    margin-left: var(--em-space-3, 10px);
   }
 
   .view-hidden {
@@ -37,14 +37,14 @@ export const GroupStyle = styled.div`
     display: flex;
     align-items: center;
 
-    margin: 0 20px 0 0;
-    padding: 5px 0 5px 5px;
+    margin: 0 var(--em-space-5, 20px) 0 0;
+    padding: var(--em-space-1, 5px) 0 var(--em-space-1, 5px) var(--em-space-1, 5px);
 
-    border-radius: 4px;
-    border: 1px solid ${(props) => props.theme.border};
+    border-radius: var(--em-radius-sm, 4px);
+    border: 1px solid var(--em-border-default, ${(props) => props.theme.border});
 
     & > * {
-      margin-right: 16px;
+      margin-right: var(--em-space-4, 16px);
     }
   }
 `

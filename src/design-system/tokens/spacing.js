@@ -1,0 +1,19 @@
+/**
+ * Spacing tokens — 4px base unit.
+ *
+ * Step values follow Tailwind-style numbering so callers can use
+ * `spacing[2]` (8px), `spacing[4]` (16px), etc.
+ */
+
+export const spacing = {
+  0: "0px",
+  1: "4px",
+  2: "8px",
+  3: "12px",
+  4: "16px",
+  5: "20px",
+  6: "24px",
+  8: "32px",
+  10: "40px",
+  12: "48px"
+}

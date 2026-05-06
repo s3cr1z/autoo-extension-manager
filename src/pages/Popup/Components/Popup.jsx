@@ -4,6 +4,7 @@ import classNames from "classnames"
 import { styled } from "styled-components"
 
 import { getPopupWidth } from ".../pages/Popup/utils/popupLayoutHelper"
+import { getLang } from ".../utils/utils"
 import { isExtExtension } from "../../../utils/extensionHelper.js"
 import { handleExtensionOnOff } from "../ExtensionOnOffHandler.js"
 import { useSearchController } from "../hooks/useSearchController"
@@ -117,6 +118,27 @@ function IndexPopup({ originExtensions, options, params }) {
   }
 
   const getExtensionDisplay = () => {
+    const noExtensions =
+      pluginExtensions.length === 0 && (!isShowAppExtension || appExtensions.length === 0)
+    if (noExtensions) {
+      return (
+        <div
+          role="status"
+          aria-live="polite"
+          style={{
+            padding: "24px 16px",
+            textAlign: "center",
+            color: "var(--em-text-secondary)"
+          }}>
+          <div style={{ fontWeight: 600, fontSize: 14 }}>
+            {getLang("no_extensions_found") || "No extensions match"}
+          </div>
+          <div style={{ marginTop: 4, fontSize: 12 }}>
+            {getLang("no_extensions_found_hint") || "Try a different search term."}
+          </div>
+        </div>
+      )
+    }
     if (!layout || layout === "list") {
       if (options.setting.isDisplayByGroup) {
         return (
@@ -162,14 +184,15 @@ function IndexPopup({ originExtensions, options, params }) {
           isDarkMode={params.isDarkMode}></Header>
       </div>
 
-      <div
+      <main
         className={classNames([
           "extension-container",
           { "extension-container-grid": layout === "grid" }
-        ])}>
+        ])}
+        aria-label="Extensions">
         {getExtensionDisplay()}
         {isShowAppExtension && <AppList items={appExtensions}></AppList>}
-      </div>
+      </main>
     </Style>
   )
 }
@@ -182,12 +205,13 @@ const Style = styled.div`
   height: 100%;
   overflow: hidden;
 
-  background-color: ${(props) => props.theme.bg};
-  color: ${(props) => props.theme.fg};
+  background-color: var(--em-bg-primary, ${(props) => props.theme.bg});
+  color: var(--em-text-primary, ${(props) => props.theme.fg});
+  font-family: var(--em-font-family);
 
   :root {
     /* HeaderStyle 中设置的 Header 高度，不包括搜索框 */
-    --header-height: 42px;
+    --header-height: 48px;
   }
 
   &::-webkit-scrollbar {
@@ -207,6 +231,7 @@ const Style = styled.div`
     flex: 1 1 auto;
     overflow: auto;
     margin-left: 0px;
+    scroll-behavior: smooth;
 
     /* Header 的高度 */
     margin-top: var(--header-height);
@@ -219,16 +244,16 @@ const Style = styled.div`
   }
 
   .extension-container::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: var(--em-radius-full, 9999px);
     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     opacity: 1;
-    background: #cccccc;
+    background: var(--em-border-strong, #cccccc);
   }
 
   .extension-container::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    background: #cccccc33;
+    border-radius: var(--em-radius-full, 9999px);
+    background: var(--em-border-subtle, #cccccc33);
   }
 
   .extension-container-grid::-webkit-scrollbar {

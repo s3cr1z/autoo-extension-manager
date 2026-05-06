@@ -2,13 +2,13 @@ import { styled } from "styled-components"
 
 const Style = styled.div`
   .action-label {
-    font-size: 14px;
+    font-size: var(--em-font-size-base, 14px);
   }
 
   .advance-options {
     display: flex;
     & > span {
-      margin-right: 5px;
+      margin-right: var(--em-space-1, 5px);
     }
   }
 
@@ -17,29 +17,29 @@ const Style = styled.div`
   }
 
   .advance-option-tips {
-    margin-left: 10px;
-    font-size: 8px;
-    color: ${(props) => props.theme.fg5};
+    margin-left: var(--em-space-3, 10px);
+    font-size: var(--em-font-size-xs, 11px);
+    color: var(--em-text-secondary, ${(props) => props.theme.fg5});
   }
 
   .action-tip-url-match {
-    margin: 12px 0;
+    margin: var(--em-space-3, 12px) 0;
   }
 
   .action-tip-match-type {
-    margin: 12px 0;
+    margin: var(--em-space-3, 12px) 0;
 
-    font-size: 12px;
-    color: ${(props) => props.theme.fg5};
+    font-size: var(--em-font-size-sm, 12px);
+    color: var(--em-text-secondary, ${(props) => props.theme.fg5});
   }
 
   .action-show-options {
-    margin: 16px 0 0 0;
+    margin: var(--em-space-4, 16px) 0 0 0;
   }
 
   .action-refresh-options {
     display: flex;
-    margin: 5px 0 10px 0;
+    margin: var(--em-space-1, 5px) 0 var(--em-space-3, 10px) 0;
   }
 `
 

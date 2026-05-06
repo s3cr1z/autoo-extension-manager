@@ -7,17 +7,17 @@ export const GroupNavStyle = styled.div`
 
     height: 48px;
 
-    margin-bottom: 10px;
-    padding: 0 5px 0 10px;
+    margin-bottom: var(--em-space-3, 10px);
+    padding: 0 var(--em-space-1, 5px) 0 var(--em-space-3, 10px);
 
-    // border: 1px solid #337ab7;
-    border-radius: 5px;
-    box-shadow: ${(props) => props.theme.card_shadow};
+    border-radius: var(--em-radius-md, 6px);
+    box-shadow: var(--em-shadow-sm, ${(props) => props.theme.card_shadow});
+    transition: var(--em-transition-hover);
 
     user-select: none;
 
     &:hover {
-      background-color: #337ab7cc;
+      background-color: var(--em-color-primary, #337ab7cc);
     }
 
     &:hover .tab-operation {
@@ -34,21 +34,21 @@ export const GroupNavStyle = styled.div`
   .tab-container .tab-operation {
     flex: 0 0 auto;
     display: none;
-    color: ${(props) => props.theme.nav_link_hover};
-    font-size: 18px;
+    color: var(--em-color-primary-hover, ${(props) => props.theme.nav_link_hover});
+    font-size: var(--em-font-size-xl, 18px);
   }
 
   .tab-operation-item {
-    margin: 0 5px;
+    margin: 0 var(--em-space-1, 5px);
   }
 
   .selected-group-item {
-    background: #337ab788;
+    background: var(--em-color-primary, #337ab788);
   }
 
   .add-new-group {
-    color: ${(props) => props.theme.nav_link_hover};
-    font-size: 18px;
+    color: var(--em-color-primary-hover, ${(props) => props.theme.nav_link_hover});
+    font-size: var(--em-font-size-xl, 18px);
     justify-content: center;
   }
 
