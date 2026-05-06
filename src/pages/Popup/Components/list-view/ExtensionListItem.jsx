@@ -127,7 +127,6 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
 
   return (
     <div
-      role="listitem"
       onMouseEnter={(e) => onItemMouseOver(e)}
       onMouseLeave={(e) => onItemMouseOver(e)}
       className={classNames([

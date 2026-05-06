@@ -115,6 +115,15 @@ const Header = memo((props) => {
         return
       }
 
+      // Skip the global shortcut switch when the user is typing in an input
+      // or any other editable element so we don't hijack their keystrokes
+      // (e.g. typing 'f' or 's' into the search box).
+      const target = e.target
+      const tag = target?.tagName
+      if (tag === "INPUT" || tag === "TEXTAREA" || target?.isContentEditable) {
+        return
+      }
+
       switch (e.key) {
         case "f":
           if (!isShowSearch) {

@@ -71,14 +71,32 @@ export function ThemeProvider({
   const theme = resolvedDark ? darkTheme : lightTheme
 
   // Push CSS custom properties onto :root so plain CSS files share the
-  // same tokens. Cleanup removes them on unmount or theme switch.
+  // same tokens. Cleanup removes them on unmount or theme switch and also
+  // restores any inline body styles we overwrote, so the provider is safe
+  // to mount/unmount inside other hosts.
   useEffect(() => {
-    const cleanup = applyCssVariables(theme)
+    const cleanupCssVariables = applyCssVariables(theme)
+
+    let previousBackgroundColor
+    let previousColor
     if (applyBodyBackground && typeof document !== "undefined") {
-      document.body.style.backgroundColor = theme.em_bg_primary
-      document.body.style.color = theme.em_text_primary
+      const { style } = document.body
+      previousBackgroundColor = style.backgroundColor
+      previousColor = style.color
+      style.backgroundColor = theme.em_bg_primary
+      style.color = theme.em_text_primary
     }
-    return cleanup
+
+    return () => {
+      if (typeof cleanupCssVariables === "function") {
+        cleanupCssVariables()
+      }
+      if (applyBodyBackground && typeof document !== "undefined") {
+        const { style } = document.body
+        style.backgroundColor = previousBackgroundColor || ""
+        style.color = previousColor || ""
+      }
+    }
   }, [theme, applyBodyBackground])
 
   const ctx = useMemo(
@@ -86,17 +104,19 @@ export function ThemeProvider({
     [resolvedDark, mode, theme]
   )
 
-  const antdConfig = useMemo(
-    () => ({
+  const antdConfig = useMemo(() => {
+    // Ant Design's `borderRadius` token is numeric (px); pull it from the
+    // design-system token so radii stay consistent across the app.
+    const radiusFromToken = parseInt(theme.em_radius_md, 10)
+    return {
       algorithm: resolvedDark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
       token: {
         colorPrimary: theme.em_color_primary,
-        borderRadius: 6,
+        borderRadius: Number.isFinite(radiusFromToken) ? radiusFromToken : 6,
         ...(antdToken || {})
       }
-    }),
-    [resolvedDark, theme.em_color_primary, antdToken]
-  )
+    }
+  }, [resolvedDark, theme.em_color_primary, theme.em_radius_md, antdToken])
 
   return (
     <ThemeContext.Provider value={ctx}>

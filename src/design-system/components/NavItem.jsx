@@ -2,12 +2,15 @@ import React from "react"
 import { NavLink } from "react-router-dom"
 
 /**
- * Design-system NavItem — wraps `react-router-dom` NavLink to add:
- *  - `aria-current="page"` on the active link
- *  - consistent class naming so styling is centralized in NavigationStyle
+ * Design-system NavItem — thin wrapper around `react-router-dom` NavLink
+ * that:
+ *  - Adds the `active` class alongside any caller-supplied class
+ *  - Lets callers render either plain children or a render-prop receiving
+ *    `{ isActive }` for conditional UI inside the link
  *
- * The wrapped NavLink already exposes whether it is active via the
- * function-as-children pattern; we use that to set aria-current correctly.
+ * `react-router-dom` v6's NavLink already applies `aria-current="page"` to
+ * the underlying anchor when it matches the current route, so we don't
+ * duplicate that attribute here.
  */
 function NavItem({ to, className, children, onClick, end, ...rest }) {
   return (
@@ -20,7 +23,7 @@ function NavItem({ to, className, children, onClick, end, ...rest }) {
       }
       {...rest}>
       {({ isActive }) => (
-        <span aria-current={isActive ? "page" : undefined} className="em-nav-item-inner">
+        <span className="em-nav-item-inner">
           {typeof children === "function" ? children({ isActive }) : children}
         </span>
       )}

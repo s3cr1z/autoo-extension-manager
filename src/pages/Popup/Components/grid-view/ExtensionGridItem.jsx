@@ -11,6 +11,7 @@ import {
 import { Popconfirm, Space, message } from "antd"
 import classNames from "classnames"
 
+import Badge from ".../design-system/components/Badge"
 import { ManualEnableCounter } from ".../storage/local/ManualEnableCounter"
 import { isDevRuntime } from ".../utils/channelHelper"
 import { getHomepageUrl, getIcon, getOriginSettingUrl } from ".../utils/extensionHelper.js"
@@ -277,10 +278,11 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           )}
         </div>
         {itemPined && isShowDotOfFixedExtension && (
-          <i
+          <Badge
+            tone="success"
             className="item-pined-dot"
-            role="img"
-            aria-label={getLang("fixed_extension_dot_tip") || "Pinned"}></i>
+            srLabel={getLang("fixed_extension_dot_tip") || "Pinned"}
+          />
         )}
       </div>
 
