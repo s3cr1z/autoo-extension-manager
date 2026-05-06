@@ -12,7 +12,7 @@ export const GroupStyle = styled.div`
     width: 200px;
     flex-shrink: 0;
 
-    /* background: linear-gradient(to right, #fff, #337ab788); */
+    background: transparent;
   }
 
   .right-box {
@@ -42,6 +42,7 @@ export const GroupStyle = styled.div`
 
     border-radius: var(--em-radius-sm, 4px);
     border: 1px solid var(--em-border-default, ${(props) => props.theme.border});
+    background-color: var(--em-bg-elevated);
 
     & > * {
       margin-right: var(--em-space-4, 16px);

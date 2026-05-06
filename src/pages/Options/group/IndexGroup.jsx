@@ -6,6 +6,7 @@ import { message } from "antd"
 import classNames from "classnames"
 import chromeP from "webext-polyfill-kinda"
 
+import { EmptyState, RowSkeleton } from ".../design-system"
 import storage from ".../storage/sync"
 import { filterExtensions, isExtExtension } from ".../utils/extensionHelper"
 import analytics from ".../utils/googleAnalyze.js"
@@ -173,7 +174,11 @@ function GroupManagement() {
   }
 
   if (!options) {
-    return null
+    return (
+      <GroupStyle>
+        <RowSkeleton rows={6} />
+      </GroupStyle>
+    )
   }
 
   return (
@@ -225,6 +230,12 @@ function GroupManagement() {
                   </Checkbox>
                 </div>
               </GroupContent>
+            )}
+            {!selectedGroup && (
+              <EmptyState
+                title={getLang("group_title")}
+                description={getLang("setting_popup_setting_group_sort")}
+              />
             )}
           </div>
 

@@ -15,7 +15,7 @@ const EditorCommonStyle = styled.div`
       height: 2px;
       margin: var(--em-space-1, 5px) 0;
 
-      background: var(--em-color-primary, #337ab7);
+      background: var(--em-color-primary);
       border-radius: var(--em-radius-full, 9999px);
     }
 

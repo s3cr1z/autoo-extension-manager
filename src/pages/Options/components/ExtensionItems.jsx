@@ -42,9 +42,20 @@ const ExtensionItems = memo(
                         "not-enable": !item.enabled
                       })}>
                       <Tooltip placement="top" title={item.name}>
-                        <div className="ext-item" onClick={(e) => onClick(e, item)}>
+                        <div
+                          className="ext-item"
+                          role="button"
+                          tabIndex={0}
+                          aria-label={showName}
+                          onClick={(e) => onClick(e, item)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault()
+                              onClick(e, item)
+                            }
+                          }}>
                           <div>
-                            <img src={getIcon(item, 128)} alt="" />
+                            <img src={getIcon(item, 128)} alt={showName} />
                             {showFixedPin?.(item) && <i className="ext-item-fixed-dot"></i>}
                           </div>
                           <span>{showName}</span>
@@ -91,6 +102,12 @@ const Style = styled.div`
     }
   }
 
+  .ext-item:focus-visible {
+    outline: 2px solid var(--em-color-primary);
+    outline-offset: 2px;
+    border-radius: var(--em-radius-sm, 4px);
+  }
+
   .ext-item-fixed-dot {
     position: absolute;
 
@@ -105,7 +122,7 @@ const Style = styled.div`
     border-radius: 6px;
     box-shadow: 0 0 0px 1px ${(props) => props.theme.bg};
 
-    background-color: #3ffa7b;
+    background-color: var(--em-color-success);
   }
 
   .ext-item img {

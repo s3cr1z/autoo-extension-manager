@@ -8,7 +8,7 @@ import {
   ToolOutlined,
   UnlockOutlined
 } from "@ant-design/icons"
-import { Popconfirm, Space, message } from "antd"
+import { Space, message } from "antd"
 import classNames from "classnames"
 
 import Badge from ".../design-system/components/Badge"
@@ -318,8 +318,29 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             "operation-menu-disable": !itemEnable
           }
         ])}
-        role="group"
+        role="menu"
         aria-label={`${item.name} ${getLang("actions") || "actions"}`}
+        onKeyDown={(e) => {
+          const focusableItems = Array.from(
+            menuRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') ?? []
+          )
+          const currentIndex = focusableItems.indexOf(document.activeElement)
+          if (e.key === "Escape") {
+            setIsMouseEnter(false)
+            setIsMenuShow(false)
+            setIsMouseRightClick(false)
+            containerRef.current?.querySelector(".grid-display-item")?.focus()
+            e.preventDefault()
+          } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            focusableItems[(currentIndex + 1) % focusableItems.length]?.focus()
+            e.preventDefault()
+          } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            focusableItems[
+              (currentIndex - 1 + focusableItems.length) % focusableItems.length
+            ]?.focus()
+            e.preventDefault()
+          }
+        }}
         onMouseEnter={handleMenuMouseEnter}
         onMouseLeave={handleMenuMouseLeave}
         ref={menuRef}>
@@ -328,7 +349,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           {canLock && (
             <Space
               className="operation-menu-item"
-              role="button"
+              role="menuitem"
               tabIndex={0}
               aria-label={
                 itemPined
@@ -350,8 +371,8 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               "operation-menu-item-disabled": !existOptionPage,
               "operation-menu-item": existOptionPage
             })}
-            role="button"
-            tabIndex={0}
+            role="menuitem"
+            tabIndex={existOptionPage ? 0 : -1}
             aria-label={`${getLang("setting_title") || "Settings"}: ${item.name}`}
             aria-disabled={!existOptionPage}
             onClick={(e) => handleSettingButtonClick(e, item)}
@@ -363,19 +384,9 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             }}>
             <SettingOutlined />
           </Space>
-          {/* <Popconfirm
-            title={getLang("remove_extension")}
-            description={getLang("remove_extension_confirm", item.shortName)}
-            onConfirm={(e) => confirmDeleteExtension(e, item)}
-            okText="Yes"
-            cancelText="Cancel">
-            <Space className="operation-menu-item">
-              <DeleteOutlined />
-            </Space>
-          </Popconfirm> */}
           <Space
             className="operation-menu-item"
-            role="button"
+            role="menuitem"
             tabIndex={0}
             aria-label={`${getLang("delete") || "Delete"}: ${item.name}`}
             onClick={(e) => confirmDeleteExtension(e, item)}
@@ -392,8 +403,8 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               "operation-menu-item-disabled": !existHomePage,
               "operation-menu-item": existHomePage
             })}
-            role="button"
-            tabIndex={0}
+            role="menuitem"
+            tabIndex={existHomePage ? 0 : -1}
             aria-label={`${getLang("home_page") || "Open homepage"}: ${item.name}`}
             aria-disabled={!existHomePage}
             onClick={(e) => handleHomeButtonClick(e, item)}
@@ -407,7 +418,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
           </Space>
           <Space
             className="operation-menu-item"
-            role="button"
+            role="menuitem"
             tabIndex={0}
             aria-label={`${getLang("chrome_extension_setting") || "Browser settings"}: ${
               item.name

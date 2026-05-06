@@ -8,10 +8,10 @@ import {
 } from "@ant-design/icons"
 import { Alert, Button, Space, Tag } from "antd"
 import newGithubIssueUrl from "new-github-issue-url"
-import { useTheme } from "styled-components"
 
 import DarkIcon from ".../assets/img/design-devin/Dark.svg"
 import LightIcon from ".../assets/img/design-devin/Light.svg"
+import { useTheme } from ".../design-system"
 import { closeAlertTemp, compareVersion } from ".../pages/Options/utils/LatestVersionChecker.js"
 import { storage } from ".../storage/sync"
 import { isEdgePackage } from ".../utils/channelHelper.js"
@@ -20,8 +20,7 @@ import Title from "../Title.jsx"
 import { AboutStyle } from "./AboutStyle"
 
 function About() {
-  const theme = useTheme()
-  const isDarkMode = theme.bg === "#242529"
+  const { isDarkMode } = useTheme()
 
   const [version, setVersion] = useState("UNKNOWN")
   const [latestVersion, setLatestVersion] = useState("")
@@ -153,13 +152,43 @@ ${navigator.userAgent}`
         )}
 
         <Space size={[0, 8]}>
-          <Tag className="badges-tag" icon={<GithubOutlined />} onClick={openGithub}>
+          <Tag
+            className="badges-tag"
+            icon={<GithubOutlined />}
+            tabIndex={0}
+            onClick={openGithub}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                openGithub()
+              }
+            }}>
             Github
           </Tag>
-          <Tag className="badges-tag" icon={<StarOutlined />} onClick={openRatePage}>
+          <Tag
+            className="badges-tag"
+            icon={<StarOutlined />}
+            tabIndex={0}
+            onClick={openRatePage}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                openRatePage()
+              }
+            }}>
             Rate Me 5 Stars
           </Tag>
-          <Tag className="badges-tag" icon={<HeartOutlined />} onClick={openSponsorPage}>
+          <Tag
+            className="badges-tag"
+            icon={<HeartOutlined />}
+            tabIndex={0}
+            onClick={openSponsorPage}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                openSponsorPage()
+              }
+            }}>
             Buy Me a Coffee
           </Tag>
         </Space>
@@ -169,7 +198,16 @@ ${navigator.userAgent}`
         <span>{storageMessage}</span>
         <QuestionCircleOutlined
           className="storage-detail-tip-icon"
+          role="button"
+          tabIndex={0}
+          aria-label={getLang("about_storage_usage_tip") || "Storage usage help"}
           onClick={openStorageExplainPage}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault()
+              openStorageExplainPage()
+            }
+          }}
         />
       </div>
     </AboutStyle>

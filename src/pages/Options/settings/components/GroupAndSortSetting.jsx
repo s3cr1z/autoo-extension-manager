@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react"
 
 import { QuestionCircleOutlined } from "@ant-design/icons"
-import { Button, Popconfirm, Radio, Segmented, Slider, Switch, Tooltip, message } from "antd"
+import { Radio, Segmented, Switch, Tooltip } from "antd"
 
 import { getLang } from ".../utils/utils"
 

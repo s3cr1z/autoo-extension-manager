@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react"
 
 import { QuestionCircleOutlined } from "@ant-design/icons"
-import { Button, Popconfirm, Radio, Slider, Switch, Tooltip, message } from "antd"
+import { Radio, Slider, Switch } from "antd"
 
 import { getLang } from ".../utils/utils"
 
@@ -10,12 +10,14 @@ const ViewOtherSetting = memo(({ setting, onSettingChange }) => {
   const [darkMode, setDarkMode] = useState("system")
   // Popup 缩放比例
   const [zoomRatio, setZoomRatio] = useState(100)
+  const [useNewUI, setUseNewUI] = useState(true)
 
   useEffect(() => {
     const initDarkMode = setting.darkMode ?? "system"
     setDarkMode(initDarkMode)
     const ratio = setting.zoomRatio ?? 100
     setZoomRatio(ratio)
+    setUseNewUI(setting.useNewUI ?? true)
   }, [setting])
 
   return (
@@ -47,6 +49,16 @@ const ViewOtherSetting = memo(({ setting, onSettingChange }) => {
           min={10}
           max={100}
           step={1}
+        />
+      </div>
+
+      <div className="setting-item">
+        <span>{getLang("setting_use_new_ui") || "Use new UI"}</span>
+        <Switch
+          size="small"
+          aria-label={getLang("setting_use_new_ui") || "Use new UI"}
+          checked={useNewUI}
+          onChange={(value) => onSettingChange(value, setUseNewUI, "useNewUI")}
         />
       </div>
     </div>

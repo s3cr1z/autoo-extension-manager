@@ -42,7 +42,6 @@ export default ExtensionList
 
 const Style = styled.ul`
   li {
-    /* border: 1px solid #cccccc55; */
     margin-bottom: 1px;
   }
 

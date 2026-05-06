@@ -63,15 +63,15 @@ const SearchStyle = styled.div`
     height: 24px;
 
     outline-style: none;
-    border: 1px solid ${(props) => props.theme.border3};
-    border-radius: 4px;
-    background-color: ${(props) => props.theme.bg};
-    color: ${(props) => props.theme.fg};
+    border: 1px solid var(--em-border-strong, ${(props) => props.theme.border3});
+    border-radius: var(--em-radius-sm, 4px);
+    background-color: var(--em-bg-primary, ${(props) => props.theme.bg});
+    color: var(--em-text-primary, ${(props) => props.theme.fg});
 
     &:focus {
-      border-color: #66afe9;
+      border-color: var(--em-color-primary);
       outline: 0;
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(102, 175, 233, 0.6);
+      box-shadow: var(--em-focus-ring);
     }
   }
 `

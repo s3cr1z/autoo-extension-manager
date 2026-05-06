@@ -13,7 +13,7 @@ const ExtensionNameItem = memo(({ name, record }) => {
   return (
     <Tooltip placement="topLeft" title={name}>
       <Style>
-        <img src={record.icon} alt="" width={16} height={16} />
+        <img src={record.icon} alt={name} width={16} height={16} />
         <span className={classNames(["column-name-title"])}>{name}</span>
         <ExtensionChannelLabel channel={record.channel}></ExtensionChannelLabel>
       </Style>

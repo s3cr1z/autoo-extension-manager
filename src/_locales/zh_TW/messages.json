@@ -698,6 +698,9 @@
   "setting_popup_scale_title": {
     "message": "縮放比例"
   },
+  "setting_use_new_ui": {
+    "message": "使用新版介面"
+  },
   "setting_func_witch_group": {
     "message": "切換分組時，啓用當前分組擴展，禁用其它的擴展"
   },

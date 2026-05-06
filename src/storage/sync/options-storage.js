@@ -80,6 +80,9 @@ export const SyncOptionsStorage = {
     if (options.setting.defaultSortField === undefined) {
       options.setting.defaultSortField = "name"
     }
+    if (options.setting.useNewUI === undefined) {
+      options.setting.useNewUI = true
+    }
 
     // default for show hidden extension is set to false
     if (options.setting.isShowHiddenExtension === undefined) {

@@ -1,9 +1,10 @@
 import React, { memo } from "react"
 
 import { CopyOutlined, DeleteOutlined, FormOutlined } from "@ant-design/icons"
-import { Popconfirm, Switch } from "antd"
+import { Popconfirm } from "antd"
 import { styled } from "styled-components"
 
+import { IconButton, Switch } from ".../design-system"
 import { getLang } from ".../utils/utils"
 
 const OperationView = memo((props) => {
@@ -11,8 +12,16 @@ const OperationView = memo((props) => {
   return (
     <Style>
       <div className="operation">
-        <FormOutlined onClick={() => onEdit?.(record)} />
-        <CopyOutlined onClick={() => onDuplicate?.(record)} />
+        <IconButton
+          tooltip={getLang("edit") || "Edit"}
+          icon={<FormOutlined />}
+          onClick={() => onEdit?.(record)}
+        />
+        <IconButton
+          tooltip={getLang("duplicate") || "Duplicate"}
+          icon={<CopyOutlined />}
+          onClick={() => onDuplicate?.(record)}
+        />
 
         <Popconfirm
           title={getLang("rule_action_delete_action")}
@@ -20,11 +29,12 @@ const OperationView = memo((props) => {
           onConfirm={() => onDelete?.(record)}
           okText="Yes"
           cancelText="Cancel">
-          <DeleteOutlined />
+          <IconButton tooltip={getLang("delete") || "Delete"} icon={<DeleteOutlined />} />
         </Popconfirm>
 
         <Switch
           size="small"
+          aria-label={`${record.enable ? "Disable" : "Enable"} rule`}
           checked={record.enable}
           onChange={(e) => onEnabled?.(record, e)}></Switch>
       </div>

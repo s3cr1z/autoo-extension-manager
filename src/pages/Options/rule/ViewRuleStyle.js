@@ -9,7 +9,7 @@ const Style = styled.div`
 
   .error-text {
     font-weight: var(--em-font-weight-bold, 700);
-    color: var(--em-color-danger, #f5222d);
+    color: var(--em-color-danger);
   }
 
   .rule-row-selected {
@@ -18,13 +18,13 @@ const Style = styled.div`
 
   @keyframes flashing {
     0% {
-      background-color: #95de6400;
+      background-color: var(--em-flash-success-transparent);
     }
     50% {
-      background-color: #95de64ff;
+      background-color: var(--em-flash-success);
     }
     100% {
-      background-color: #95de6400;
+      background-color: var(--em-flash-success-transparent);
     }
   }
 

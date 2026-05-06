@@ -1,10 +1,11 @@
 import React, { memo, useEffect, useState } from "react"
 
 import { DeleteOutlined, HomeOutlined, SettingOutlined } from "@ant-design/icons"
-import { Popconfirm, Space, Switch, Tooltip, message } from "antd"
+import { message } from "antd"
 import classNames from "classnames"
 import styled from "styled-components"
 
+import { IconButton, Switch } from ".../design-system"
 import { getHomepageUrl } from ".../utils/extensionHelper"
 import { getLang } from ".../utils/utils"
 
@@ -60,42 +61,39 @@ const ExtensionOperationItem = memo(({ record, options }) => {
 
       <Switch
         size="small"
+        aria-label={`${itemEnable ? "Disable" : "Enable"} ${record.name}`}
         checked={itemEnable}
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => onSwitchChange(e, record)}></Switch>
 
-      <Space
+      <IconButton
         className={classNames({
           "operation-menu-item-disabled": !record.optionsUrl,
           "operation-menu-item": record.optionsUrl
         })}
-        onClick={(e) => handleSettingButtonClick(e, record)}>
-        <SettingOutlined />
-      </Space>
+        disabled={!record.optionsUrl}
+        tooltip={`${getLang("setting_title") || "Settings"}: ${record.name}`}
+        icon={<SettingOutlined />}
+        onClick={(e) => handleSettingButtonClick(e, record)}
+      />
 
-      {/* <Popconfirm
-        title={getLang("remove_extension")}
-        description={getLang("remove_extension_confirm", record.shortName)}
-        onConfirm={(e) => confirmDeleteExtension(e, record)}
-        okText="Yes"
-        cancelText="Cancel">
-        <Space className="operation-menu-item">
-          <DeleteOutlined />
-        </Space>
-      </Popconfirm> */}
+      <IconButton
+        className="operation-menu-item"
+        tooltip={`${getLang("delete") || "Delete"}: ${record.name}`}
+        icon={<DeleteOutlined />}
+        onClick={(e) => confirmDeleteExtension(e, record)}
+      />
 
-      <Space className="operation-menu-item" onClick={(e) => confirmDeleteExtension(e, record)}>
-        <DeleteOutlined />
-      </Space>
-
-      <Space
+      <IconButton
         className={classNames({
           "operation-menu-item-disabled": !record.homepageUrl,
           "operation-menu-item": record.homepageUrl
         })}
-        onClick={(e) => handleHomeButtonClick(e, record)}>
-        <HomeOutlined />
-      </Space>
+        disabled={!record.homepageUrl}
+        tooltip={`${getLang("home_page") || "Open homepage"}: ${record.name}`}
+        icon={<HomeOutlined />}
+        onClick={(e) => handleHomeButtonClick(e, record)}
+      />
     </Style>
   )
 })
@@ -120,8 +118,8 @@ const Style = styled.span`
 
     &:hover {
       transform: scale(1.6);
-      color: #346dbc;
-      text-shadow: 2px 2px 4px #24bfc4;
+      color: var(--em-color-primary);
+      text-shadow: 2px 2px 4px var(--em-color-accent);
     }
   }
 `

@@ -56,16 +56,16 @@ export const NavigationStyle = styled.nav`
     }
 
     &.active {
-      background-color: var(--em-bg-brand-solid, #337ab7);
-      color: var(--em-text-on-brand, #fff);
+      background-color: var(--em-bg-brand-solid);
+      color: var(--em-text-on-brand);
 
       &::before {
-        background-color: var(--em-color-primary-hover, #23527c);
+        background-color: var(--em-color-primary-hover);
       }
     }
 
     &:focus-visible {
-      outline: 2px solid var(--em-color-primary, #337ab7);
+      outline: 2px solid var(--em-color-primary);
       outline-offset: 2px;
     }
 

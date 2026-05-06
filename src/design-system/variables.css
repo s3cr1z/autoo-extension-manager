@@ -19,6 +19,10 @@
   --em-color-success: #3ffa7b;
   --em-color-warning: #faad14;
   --em-color-danger: #cf1322;
+  --em-bg-success-subtle: #e8f7df;
+  --em-bg-info-subtle: #e6f4ff;
+  --em-bg-warning-subtle: #fff7e6;
+  --em-bg-danger-subtle: #fff1f0;
 
   /* Solid brand background that always pairs with white text. */
   --em-bg-brand-solid: #337ab7;
@@ -45,7 +49,20 @@
   --em-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
   --em-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
   --em-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.18);
+  --em-shadow-inset: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  --em-shadow-accent: 0 2px 6px rgba(36, 193, 192, 0.4);
   --em-focus-ring: 0 0 0 2px rgba(51, 122, 183, 0.4);
+  --em-focus-shadow: 0 0 0 2px #4c9ffe;
+  --em-overlay-bg: rgba(0, 0, 0, 0.78);
+  --em-ring-subtle: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --em-flash-success: #95de64;
+  --em-flash-success-transparent: #95de6400;
+  --em-sortable-item-bg: #ffffff;
+  --em-sortable-item-color: #2c2d31;
+  --em-sortable-shadow: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),
+    0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15);
+  --em-drag-handle-hover-bg: rgba(0, 0, 0, 0.05);
+  --em-drag-handle-fill: #919eab;
 
   /* Radius */
   --em-radius-sm: 4px;

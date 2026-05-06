@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react"
 
 import { QuestionCircleOutlined } from "@ant-design/icons"
-import { Button, Popconfirm, Radio, Segmented, Slider, Switch, Tooltip, message } from "antd"
+import { Segmented, Slider, Switch, Tooltip } from "antd"
 
 import { getLang } from ".../utils/utils"
 import { MAX_COLUMN_COUNT, MIN_COLUMN_COUNT } from "../SettingConst.js"

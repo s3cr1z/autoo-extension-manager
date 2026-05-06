@@ -27,7 +27,7 @@ const Style = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #888a;
+    background-color: var(--em-overlay-bg);
     filter: blur(1px);
   }
 
@@ -56,9 +56,9 @@ const Style = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: ${(props) =>
-        props.theme.bg === "#242529" ? "rgba(36, 37, 41, 0.85)" : "rgba(255, 255, 255, 0.8)"};
-      border-radius: 6px;
+      background-color: var(--em-bg-elevated);
+      border-radius: var(--em-radius-md, 6px);
+      opacity: 0.9;
       filter: blur(1px);
       z-index: -1;
     }

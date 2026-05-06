@@ -698,6 +698,9 @@
   "setting_popup_scale_title": {
     "message": "Popup zoom ratio"
   },
+  "setting_use_new_ui": {
+    "message": "Use new UI"
+  },
   "setting_func_witch_group": {
     "message": "When switching groups, enable the extensions in the current group and disable the rest"
   },

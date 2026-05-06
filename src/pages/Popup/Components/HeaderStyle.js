@@ -8,7 +8,7 @@ const Style = styled.div`
   padding: 0 var(--em-space-2, 8px);
   margin-bottom: 2px;
 
-  box-shadow: var(--em-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.06));
+  box-shadow: var(--em-shadow-sm);
 
   background-color: var(--em-bg-primary, ${(props) => props.theme.bg});
   color: var(--em-text-primary, ${(props) => props.theme.fg});
@@ -36,11 +36,12 @@ const Style = styled.div`
     }
   }
 
-  .right .ant-space {
+  .right .ant-space,
+  .right .ant-btn {
     transition: var(--em-transition-hover);
 
     &:hover {
-      color: var(--em-color-primary, #555);
+      color: var(--em-color-primary);
     }
   }
 
@@ -65,18 +66,23 @@ const Style = styled.div`
   }
 
   .setting-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
     font-size: 20px;
-    cursor: pointer;
     border-radius: var(--em-radius-md, 6px);
     transition: var(--em-transition-hover);
 
     &:hover {
-      color: var(--em-color-primary, #555);
+      color: var(--em-color-primary);
       background-color: var(--em-bg-hover);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--em-color-primary, #337ab7);
+      outline: 2px solid var(--em-color-primary);
       outline-offset: 2px;
     }
   }
@@ -107,7 +113,7 @@ const SearchStyle = styled.div`
     }
   }
 
-  input {
+  .em-ds-input {
     width: 100%;
     height: 30px;
     padding: 0 var(--em-space-3, 12px);
@@ -121,9 +127,9 @@ const SearchStyle = styled.div`
 
     &:focus,
     &:focus-visible {
-      border-color: var(--em-color-primary, #66afe9);
+      border-color: var(--em-color-primary);
       outline: 0;
-      box-shadow: var(--em-focus-ring, 0 0 0 2px rgba(102, 175, 233, 0.4));
+      box-shadow: var(--em-focus-ring);
     }
 
     background-color: var(--em-bg-primary, ${(props) => props.theme.bg});

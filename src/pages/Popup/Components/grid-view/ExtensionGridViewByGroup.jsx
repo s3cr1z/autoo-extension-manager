@@ -59,7 +59,10 @@ const ExtensionGridSpace = memo(({ group, options, onItemMove, groupIndex }) => 
         </span>
       )}
 
-      <ul className={classNames({ "show-list": !fold, "hide-list": fold })}>
+      <ul
+        role="list"
+        aria-label={group.name || "Extensions"}
+        className={classNames({ "show-list": !fold, "hide-list": fold })}>
         {group.extensions.map((item) => (
           <li key={item.id}>
             <ExtensionGridItem
@@ -87,7 +90,7 @@ const GridSpaceByGroupStyle = styled.div`
 
     &::before,
     &::after {
-      border-bottom: 1px solid ${(props) => props.theme.input_border};
+      border-bottom: 1px solid var(--em-border-strong, ${(props) => props.theme.input_border});
     }
 
     &::before {
