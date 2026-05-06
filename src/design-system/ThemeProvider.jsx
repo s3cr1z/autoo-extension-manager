@@ -126,12 +126,41 @@ export function ThemeProvider({
     return {
       algorithm: resolvedDark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
       token: {
-        colorPrimary: theme.em_color_primary,
+        // Use the brand-solid blue for AntD's primary so primary buttons
+        // get white text against `#337ab7` (4.65:1, passes WCAG AA) in
+        // both themes. The dark-mode `em_color_primary` (`#5b9bd5`) is
+        // intentionally lighter for use as link/icon foreground on a dark
+        // page bg, but it would only hit ~2.96:1 with white.
+        colorPrimary: theme.em_bg_brand_solid,
+        // Override `colorError` so danger buttons and links use our
+        // contrast-checked danger token (default `#ff4d4f` on white only
+        // hits 3.26:1; `#cf1322` reaches 5.94:1).
+        colorError: theme.em_color_danger,
+        // Default `colorTextDescription` (`#bfbfbf` light / `#4f4f4f` dark)
+        // fails WCAG AA on its own background. Use our secondary text
+        // token which is contrast-checked in both themes.
+        colorTextDescription: theme.em_text_secondary,
         borderRadius: Number.isFinite(radiusFromToken) ? radiusFromToken : 6,
         ...(antdToken || {})
+      },
+      components: {
+        // The default `Empty` component renders its description in
+        // `colorTextDisabled` (`#bfbfbf` / `#4f4f4f`), which fails WCAG
+        // AA contrast on its own. Force the description to use the
+        // brand's secondary text color in both themes.
+        Empty: {
+          colorTextDisabled: theme.em_text_secondary
+        }
       }
     }
-  }, [resolvedDark, theme.em_color_primary, theme.em_radius_md, antdToken])
+  }, [
+    resolvedDark,
+    theme.em_bg_brand_solid,
+    theme.em_color_danger,
+    theme.em_text_secondary,
+    theme.em_radius_md,
+    antdToken
+  ])
 
   return (
     <ThemeContext.Provider value={ctx}>

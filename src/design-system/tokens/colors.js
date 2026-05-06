@@ -40,7 +40,11 @@ const brand = {
   accentDeep: "#27b0d4",
   success: "#3ffa7b",
   warning: "#faad14",
-  danger: "#ff4d4f"
+  // Default `#ff4d4f` only meets ~3.26:1 against white; this darker shade
+  // gives ~5.94:1 so danger button text passes WCAG AA.
+  danger: "#cf1322",
+  // Lighter danger used in dark mode where the surrounding bg is near-black.
+  dangerDark: "#ff7875"
 }
 
 export const lightTheme = {
@@ -50,8 +54,9 @@ export const lightTheme = {
   fg2: "#333",
   fg3: "#555",
   fg4: "#666",
-  fg5: "#777",
-  fg6: "#888",
+  // Bumped from #777/#888 so secondary text passes WCAG AA against white.
+  fg5: "#595959",
+  fg6: "#595959",
   border: "#eee",
   border2: "#ddd",
   border3: "#ccc",
@@ -87,6 +92,11 @@ export const lightTheme = {
   em_color_warning: brand.warning,
   em_color_danger: brand.danger,
 
+  // Solid brand background that always pairs with white text and meets
+  // WCAG AA in both light and dark themes (white on `#337ab7` = 4.65:1).
+  em_bg_brand_solid: brand.primary,
+  em_text_on_brand: neutral[0],
+
   em_bg_primary: neutral[0],
   em_bg_secondary: neutral[100],
   em_bg_elevated: neutral[0],
@@ -116,8 +126,9 @@ export const darkTheme = {
   fg2: "#C9CACF",
   fg3: "#aaa",
   fg4: "#999",
-  fg5: "#888",
-  fg6: "#777",
+  // Bumped from #888/#777 so secondary text passes WCAG AA against #242529.
+  fg5: "#a8a9ad",
+  fg6: "#a8a9ad",
   border: "#3a3a3a",
   border2: "#444",
   border3: "#555",
@@ -151,7 +162,13 @@ export const darkTheme = {
   em_color_accent_deep: brand.accentDeep,
   em_color_success: brand.success,
   em_color_warning: brand.warning,
-  em_color_danger: brand.danger,
+  em_color_danger: brand.dangerDark,
+
+  // Same `#337ab7` as light mode so white text on active states keeps the
+  // 4.65:1 contrast ratio. Using `primaryDark` as a background failed at
+  // ~2.96:1 with white.
+  em_bg_brand_solid: brand.primary,
+  em_text_on_brand: neutral[0],
 
   em_bg_primary: neutral[1000],
   em_bg_secondary: neutral[900],

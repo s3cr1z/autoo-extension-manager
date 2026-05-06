@@ -186,29 +186,16 @@ Automated axe scans are tag-filtered to WCAG 2.1 A + AA. The plumbing in
 | `tolerated`     | Logged but allowed. Critical/serious violations on the allowlist. |
 | `informational` | Logged but allowed. Moderate or minor violations.                 |
 
-The allowlist lives at `tests/a11y/known-issues.json`. The current
-entries — established when the suite landed — are:
+The allowlist lives at `tests/a11y/known-issues.json`. As of the most
+recent a11y pass it is **empty**: the four entries the suite shipped
+with (`color-contrast`, `aria-input-field-name`, `button-name`,
+`role-img-alt`) have all been fixed in the source, so any new violation
+of those rules will fail CI immediately.
 
-- **`color-contrast`** — A handful of text/background pairs (mostly
-  Ant Design's secondary text and the disabled state on switches) miss
-  WCAG AA contrast in dark mode. Tracked for follow-up in the design
-  system rather than the test scaffolding.
-- **`aria-input-field-name`** — The settings page renders Ant Design
-  switches without explicit `aria-label`s; the visible row text is
-  associated visually but not programmatically. To be fixed by piping
-  every Switch through `src/design-system/components/Switch.jsx`, which
-  already warns in dev when no accessible name is supplied.
-- **`button-name`** — Same Settings switches as above also trigger axe's
-  `button-name` rule because Ant Design renders the switch as a native
-  `<button>`. Same fix.
-- **`role-img-alt`** — Several Ant Design icon components render with
-  `role="img"` but no `aria-label`. They're decorative, but axe can't
-  prove that without `aria-hidden="true"`. Fix is mechanical: audit and
-  add `aria-hidden` or `aria-label`.
-
-When a real fix lands, remove the rule ID from `known-issues.json`.
-The next CI run will then enforce the cleanup. New entries should always
-link a tracking follow-up (issue or PR).
+If a future change introduces an unavoidable temporary regression, add
+its rule ID to `tolerated` and link a tracking follow-up (issue or PR)
+in the commit. Remove the entry once the underlying fix lands; the next
+CI run will then enforce the cleanup again.
 
 ### Performance (Phase 6.4)
 
