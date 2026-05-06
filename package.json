@@ -8,6 +8,8 @@
     "url": "https://github.com/JasonGrass/auto-extension-manager"
   },
   "scripts": {
+    "prebuild": "node utils/ensure-secret.js",
+    "prebuild:edge": "node utils/ensure-secret.js",
     "build": "node utils/build.chrome.js",
     "build:edge": "node utils/build.edge.js",
     "start": "node utils/webserver.js",
