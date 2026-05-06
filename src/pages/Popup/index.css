@@ -1,4 +1,5 @@
 @import url(../../utils/reset.css);
+@import url(../../design-system/variables.css);
 
 body {
   width: 420px;

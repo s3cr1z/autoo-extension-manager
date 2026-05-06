@@ -35,23 +35,38 @@ const AppList = memo(({ items }) => {
   return (
     <AppListStyle>
       {contextHolder}
-      <ul>
+      <ul role="list" aria-label={getLang("app_list_title") || "Apps"}>
         {items.map((item) => {
+          const launchLabel = `${getLang("launch_app") || "Launch"} ${item.shortName}`
           return (
             <li
               key={item.id}
+              role="listitem"
               className={classNames({
                 "ext-item": true,
                 "not-enable": !item.enabled
               })}>
-              <img src={getIcon(item, 48)} alt="" onClick={(e) => onIconClick(e, item)} />
+              <img
+                src={getIcon(item, 48)}
+                alt={item.shortName}
+                role="button"
+                tabIndex={0}
+                aria-label={launchLabel}
+                onClick={(e) => onIconClick(e, item)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault()
+                    onIconClick(e, item)
+                  }
+                }}
+              />
               <span>{item.shortName}</span>
             </li>
           )
         })}
 
         {new Array(10).fill("").map((_, index) => (
-          <i key={index}></i>
+          <i key={index} aria-hidden="true"></i>
         ))}
       </ul>
     </AppListStyle>

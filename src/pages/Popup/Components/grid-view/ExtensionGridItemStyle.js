@@ -12,7 +12,14 @@ export const ExtensionGridItemStyle = styled.div`
   .grid-display-item {
     position: relative;
 
-    transition: transform 0.3s ease;
+    transition: transform var(--em-duration-slow, 300ms) var(--em-easing-ease-out),
+      box-shadow var(--em-duration-slow, 300ms) var(--em-easing-ease-out);
+    border-radius: var(--em-radius-md, 6px);
+  }
+
+  .grid-display-item:focus-visible {
+    outline: 2px solid var(--em-color-primary, #337ab7);
+    outline-offset: 2px;
   }
 
   .grid-display-item-scale {
@@ -27,8 +34,9 @@ export const ExtensionGridItemStyle = styled.div`
 
   .grid-display-item-title {
     max-width: 66px;
-    margin-top: 4px;
-    color: ${(props) => props.theme.enable_text};
+    margin-top: var(--em-space-1, 4px);
+    color: var(--em-text-primary, ${(props) => props.theme.enable_text});
+    font-size: var(--em-font-size-sm, 12px);
 
     overflow: hidden;
     text-overflow: ellipsis;
@@ -43,19 +51,19 @@ export const ExtensionGridItemStyle = styled.div`
     z-index: 99999;
 
     max-width: 300px;
-    padding: 4px 8px;
+    padding: var(--em-space-1, 4px) var(--em-space-2, 8px);
 
-    font-size: 12px;
-    line-height: 1.4;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.75);
-    border-radius: 4px;
+    font-size: var(--em-font-size-sm, 12px);
+    line-height: var(--em-line-height-tight, 1.4);
+    color: var(--em-text-on-primary, #fff);
+    background-color: rgba(0, 0, 0, 0.78);
+    border-radius: var(--em-radius-sm, 4px);
     white-space: normal;
     word-break: break-word;
     pointer-events: none;
     user-select: none;
 
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--em-shadow-md, 0 2px 6px rgba(0, 0, 0, 0.2));
   }
 
   .grid-name-tooltip-show {
@@ -71,16 +79,16 @@ export const ExtensionGridItemStyle = styled.div`
 
   .tooltip-arrow-top {
     top: -4px;
-    border-bottom: 4px solid rgba(0, 0, 0, 0.75);
+    border-bottom: 4px solid rgba(0, 0, 0, 0.78);
   }
 
   .tooltip-arrow-bottom {
     bottom: -4px;
-    border-top: 4px solid rgba(0, 0, 0, 0.75);
+    border-top: 4px solid rgba(0, 0, 0, 0.78);
   }
 
   .grid-display-item-title-gray {
-    color: ${(props) => props.theme.disable_text};
+    color: var(--em-text-disabled, ${(props) => props.theme.disable_text});
   }
 
   .item-pined-dot {
@@ -92,11 +100,11 @@ export const ExtensionGridItemStyle = styled.div`
     height: 12px;
     margin: 0;
 
-    border: 3px solid #888;
-    border-radius: 6px;
-    box-shadow: 0 0 0px 1px #fff;
+    border: 2px solid var(--em-bg-primary, #fff);
+    border-radius: var(--em-radius-full, 6px);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 
-    background-color: #3ffa7b;
+    background-color: var(--em-color-success, #3ffa7b);
   }
 
   .operation-menu {
@@ -107,28 +115,28 @@ export const ExtensionGridItemStyle = styled.div`
 
     z-index: 1000;
 
-    border-radius: 4px;
-    background-color: #24bfc4;
+    border-radius: var(--em-radius-sm, 4px);
+    background-color: var(--em-color-accent, #24bfc4);
 
-    box-shadow: #24c1c0 0px 1px 4px;
+    box-shadow: var(--em-shadow-md, 0 2px 6px rgba(36, 193, 192, 0.4));
   }
 
-  /* 扩展禁用时，hover 菜单的样式 */
+  /* Disabled hover-menu styling */
   .operation-menu-disable {
     filter: grayscale(70%);
   }
 
   .operation-menu-title {
-    padding: 8px 12px;
-    color: #fff;
+    padding: var(--em-space-2, 8px) var(--em-space-3, 12px);
+    color: var(--em-text-on-primary, #fff);
     text-align: center;
 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    border-radius: 4px 4px 0px 0px;
-    background-color: #27b0d4;
+    border-radius: var(--em-radius-sm, 4px) var(--em-radius-sm, 4px) 0 0;
+    background-color: var(--em-color-accent-deep, #27b0d4);
   }
 
   .operation-menu-items {
@@ -136,11 +144,11 @@ export const ExtensionGridItemStyle = styled.div`
     align-items: center;
     justify-content: space-around;
 
-    margin-top: 5px;
-    padding: 2px 6px;
+    margin-top: var(--em-space-1, 4px);
+    padding: 2px var(--em-space-2, 8px);
 
     font-size: 22px;
-    color: #fff;
+    color: var(--em-text-on-primary, #fff);
   }
 
   .menu-on {
@@ -176,7 +184,8 @@ export const ExtensionGridItemStyle = styled.div`
     top: -10px;
     left: 58px;
 
-    animation: menu-right-in 0.2s ease-out ${(props) => props.animation_delay}s forwards;
+    animation: menu-right-in var(--em-duration-normal, 200ms) var(--em-easing-ease-out)
+      ${(props) => props.animation_delay}s forwards;
   }
 
   .menu-left {
@@ -184,25 +193,30 @@ export const ExtensionGridItemStyle = styled.div`
     top: -10px;
     right: 58px;
 
-    animation: menu-left-in 0.2s ease-out ${(props) => props.animation_delay}s forwards;
+    animation: menu-left-in var(--em-duration-normal, 200ms) var(--em-easing-ease-out)
+      ${(props) => props.animation_delay}s forwards;
   }
 
   .operation-menu-item-disabled {
-    color: #ccc;
+    color: var(--em-border-strong, #ccc);
   }
 
   .operation-menu-item {
     font-size: 20px;
+    transition: transform var(--em-duration-fast, 100ms) var(--em-easing-ease-out);
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       transform: scale(1.2);
-      color: #346dbc;
-      text-shadow: 2px 2px 4px #24bfc4;
+      color: var(--em-color-primary, #346dbc);
+      text-shadow: 2px 2px 4px var(--em-color-accent, #24bfc4);
+      outline: none;
     }
   }
 
   .grid-item-disable {
-    filter: grayscale(100%) opacity(50%);
+    filter: grayscale(70%) opacity(0.6);
+    transition: filter var(--em-duration-normal, 200ms) var(--em-easing-ease-out);
 
     &:hover {
       filter: none;

@@ -237,12 +237,26 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
       onMouseUpCapture={handleItemMouseClick}
       animation_delay={menuDisplayByRightClick ? 0 : 0.3}>
       {contextHolder}
-      {/* 扩展显示 */}
+      {/* Extension display */}
       <div
         className={classNames([
           "grid-display-item",
           { "grid-display-item-scale": isMouseEnter || isMenuShow }
         ])}
+        role="button"
+        tabIndex={0}
+        aria-label={`${itemEnable ? "Disable" : "Enable"} ${item.name}`}
+        aria-pressed={itemEnable}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            onItemClick()
+          } else if (e.key === "Escape" && (isMenuShow || isMouseEnter)) {
+            setIsMouseEnter(false)
+            setIsMenuShow(false)
+            setIsMouseRightClick(false)
+          }
+        }}
         onClick={onItemClick}>
         <div
           className={classNames([
@@ -262,7 +276,12 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             </span>
           )}
         </div>
-        {itemPined && isShowDotOfFixedExtension && <i className="item-pined-dot"></i>}
+        {itemPined && isShowDotOfFixedExtension && (
+          <i
+            className="item-pined-dot"
+            role="img"
+            aria-label={getLang("fixed_extension_dot_tip") || "Pinned"}></i>
+        )}
       </div>
 
       {/* 名称 tooltip（fixed 定位，脱离层叠上下文） */}
@@ -286,7 +305,7 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
         {item.name}
       </div>
 
-      {/* hover 菜单 */}
+      {/* Hover/right-click operation menu */}
       <div
         className={classNames([
           "operation-menu",
@@ -297,13 +316,30 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
             "operation-menu-disable": !itemEnable
           }
         ])}
+        role="menu"
+        aria-label={item.name}
         onMouseEnter={handleMenuMouseEnter}
         onMouseLeave={handleMenuMouseLeave}
         ref={menuRef}>
         <h3 className="operation-menu-title">{item.name}</h3>
         <div className="operation-menu-items">
           {canLock && (
-            <Space className="operation-menu-item" onClick={(e) => handlePinButtonClick(e, item)}>
+            <Space
+              className="operation-menu-item"
+              role="menuitem"
+              tabIndex={0}
+              aria-label={
+                itemPined
+                  ? getLang("unpin_extension") || "Unpin from current group"
+                  : getLang("pin_extension") || "Pin to current group"
+              }
+              onClick={(e) => handlePinButtonClick(e, item)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault()
+                  handlePinButtonClick(e, item)
+                }
+              }}>
               {itemPined ? <LockOutlined /> : <UnlockOutlined />}
             </Space>
           )}
@@ -312,7 +348,17 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               "operation-menu-item-disabled": !existOptionPage,
               "operation-menu-item": existOptionPage
             })}
-            onClick={(e) => handleSettingButtonClick(e, item)}>
+            role="menuitem"
+            tabIndex={0}
+            aria-label={`${getLang("setting_title") || "Settings"}: ${item.name}`}
+            aria-disabled={!existOptionPage}
+            onClick={(e) => handleSettingButtonClick(e, item)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                handleSettingButtonClick(e, item)
+              }
+            }}>
             <SettingOutlined />
           </Space>
           {/* <Popconfirm
@@ -325,7 +371,18 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               <DeleteOutlined />
             </Space>
           </Popconfirm> */}
-          <Space className="operation-menu-item" onClick={(e) => confirmDeleteExtension(e, item)}>
+          <Space
+            className="operation-menu-item"
+            role="menuitem"
+            tabIndex={0}
+            aria-label={`${getLang("delete") || "Delete"}: ${item.name}`}
+            onClick={(e) => confirmDeleteExtension(e, item)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                confirmDeleteExtension(e, item)
+              }
+            }}>
             <DeleteOutlined />
           </Space>
           <Space
@@ -333,12 +390,33 @@ const ExtensionGridItem = memo(({ item, options, enabled, onItemMove }) => {
               "operation-menu-item-disabled": !existHomePage,
               "operation-menu-item": existHomePage
             })}
-            onClick={(e) => handleHomeButtonClick(e, item)}>
+            role="menuitem"
+            tabIndex={0}
+            aria-label={`${getLang("home_page") || "Open homepage"}: ${item.name}`}
+            aria-disabled={!existHomePage}
+            onClick={(e) => handleHomeButtonClick(e, item)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                handleHomeButtonClick(e, item)
+              }
+            }}>
             <HomeOutlined />
           </Space>
           <Space
             className="operation-menu-item"
-            onClick={(e) => handleOriginSettingButtonClick(e, item)}>
+            role="menuitem"
+            tabIndex={0}
+            aria-label={`${getLang("chrome_extension_setting") || "Browser settings"}: ${
+              item.name
+            }`}
+            onClick={(e) => handleOriginSettingButtonClick(e, item)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                handleOriginSettingButtonClick(e, item)
+              }
+            }}>
             <ToolOutlined />
           </Space>
         </div>

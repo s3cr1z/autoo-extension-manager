@@ -1,0 +1,103 @@
+/**
+ * Design-system CSS custom properties.
+ *
+ * These provide sensible light-theme defaults that match
+ * `src/design-system/tokens/index.js#lightTheme`. The `ThemeProvider`
+ * overrides them at runtime by writing dark/light values onto
+ * `document.documentElement` based on the user's preference.
+ *
+ * Naming: every token has the `--em-` prefix so it can never collide with
+ * Ant Design or other library variables.
+ */
+
+:root {
+  /* Brand */
+  --em-color-primary: #337ab7;
+  --em-color-primary-hover: #23527c;
+  --em-color-accent: #24bfc4;
+  --em-color-accent-deep: #27b0d4;
+  --em-color-success: #3ffa7b;
+  --em-color-warning: #faad14;
+  --em-color-danger: #ff4d4f;
+
+  /* Surfaces */
+  --em-bg-primary: #ffffff;
+  --em-bg-secondary: #f5f5f5;
+  --em-bg-elevated: #ffffff;
+  --em-bg-hover: #eeeeee;
+
+  /* Text */
+  --em-text-primary: #242529;
+  --em-text-secondary: #666666;
+  --em-text-disabled: #888888;
+  --em-text-on-primary: #ffffff;
+
+  /* Borders */
+  --em-border-default: #dddddd;
+  --em-border-strong: #cccccc;
+  --em-border-subtle: #eeeeee;
+
+  /* Elevation */
+  --em-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --em-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --em-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.18);
+  --em-focus-ring: 0 0 0 2px rgba(51, 122, 183, 0.4);
+
+  /* Radius */
+  --em-radius-sm: 4px;
+  --em-radius-md: 6px;
+  --em-radius-lg: 8px;
+  --em-radius-xl: 12px;
+  --em-radius-full: 9999px;
+
+  /* Spacing */
+  --em-space-1: 4px;
+  --em-space-2: 8px;
+  --em-space-3: 12px;
+  --em-space-4: 16px;
+  --em-space-5: 20px;
+  --em-space-6: 24px;
+  --em-space-8: 32px;
+  --em-space-10: 40px;
+  --em-space-12: 48px;
+
+  /* Typography */
+  --em-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --em-font-family-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  --em-font-size-xs: 11px;
+  --em-font-size-sm: 12px;
+  --em-font-size-base: 14px;
+  --em-font-size-lg: 16px;
+  --em-font-size-xl: 18px;
+  --em-font-size-2xl: 24px;
+  --em-line-height-tight: 1.25;
+  --em-line-height-normal: 1.5;
+  --em-line-height-relaxed: 1.75;
+  --em-font-weight-normal: 400;
+  --em-font-weight-medium: 500;
+  --em-font-weight-semibold: 600;
+  --em-font-weight-bold: 700;
+
+  /* Motion */
+  --em-duration-fast: 100ms;
+  --em-duration-normal: 200ms;
+  --em-duration-slow: 300ms;
+  --em-easing-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --em-easing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --em-transition-hover: background-color var(--em-duration-normal) var(--em-easing-ease-out),
+    color var(--em-duration-normal) var(--em-easing-ease-out),
+    border-color var(--em-duration-normal) var(--em-easing-ease-out);
+}
+
+/**
+ * Globally enable visible focus rings via :focus-visible. Buttons, inputs,
+ * and other custom focusable elements opt in by simply not removing the
+ * outline. Designed to be unobtrusive but always discoverable for keyboard
+ * users.
+ */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--em-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--em-radius-sm);
+}

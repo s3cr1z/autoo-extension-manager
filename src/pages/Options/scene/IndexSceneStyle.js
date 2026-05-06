@@ -5,8 +5,8 @@ export const SceneStyle = styled.div`
   height: 100%;
 
   .current-active-scene-title {
-    font-size: 16px;
-    color: ${(props) => props.theme.fg3};
+    font-size: var(--em-font-size-lg, 16px);
+    color: var(--em-text-primary, ${(props) => props.theme.fg3});
   }
 
   .scene-item-container {
@@ -89,27 +89,27 @@ export const SceneStyle = styled.div`
       display: flex;
       justify-content: center;
 
-      padding: 4px 8px;
+      padding: var(--em-space-1, 4px) var(--em-space-2, 8px);
 
-      background-color: ${(props) => props.theme.scene_edit_bg};
-      border-radius: 4px;
+      background-color: var(--em-bg-elevated, ${(props) => props.theme.scene_edit_bg});
+      border-radius: var(--em-radius-sm, 4px);
 
-      box-shadow: 1px 1px 2px 0px ${(props) => props.theme.scene_edit_shadow};
+      box-shadow: var(--em-shadow-sm, 1px 1px 2px 0px ${(props) => props.theme.scene_edit_shadow});
 
       font-size: 20px;
-      color: #337ab7;
+      color: var(--em-color-primary, #337ab7);
 
       & > span:hover {
         cursor: pointer;
-        color: #337ab7cc;
+        color: var(--em-color-primary-hover, #337ab7cc);
       }
     }
   }
 
   .scene-item-selected {
     /* background-color: #337ab788; */
-    color: #337ab7;
-    font-weight: 900;
+    color: var(--em-color-primary, #337ab7);
+    font-weight: var(--em-font-weight-bold, 900);
   }
 
   .scene-item-selected:hover .scene-item-edit-container {
@@ -121,26 +121,28 @@ export const SceneStyle = styled.div`
   }
 
   .scene-item-name {
+    transition: color var(--em-duration-fast, 150ms) var(--em-easing-ease-out);
     &:hover {
-      color: #337ab7;
+      color: var(--em-color-primary, #337ab7);
     }
   }
 
   .scene-item-new {
     width: 180px;
-    padding: 14px 16px;
+    padding: var(--em-space-3, 14px) var(--em-space-4, 16px);
 
-    border-radius: calc(4px / var(--scale-x, 1));
-    box-shadow: ${(props) => props.theme.sortable_shadow};
+    border-radius: calc(var(--em-radius-sm, 4px) / var(--scale-x, 1));
+    box-shadow: var(--em-shadow-sm, ${(props) => props.theme.sortable_shadow});
+    transition: var(--em-transition-hover);
 
     &:hover {
-      background-color: ${(props) => props.theme.scene_new_hover_bg};
+      background-color: var(--em-bg-hover, ${(props) => props.theme.scene_new_hover_bg});
     }
 
     .scene-item-add-icon {
-      font-size: 16px;
-      margin-right: 6px;
-      color: #337ab7;
+      font-size: var(--em-font-size-lg, 16px);
+      margin-right: var(--em-space-1, 6px);
+      color: var(--em-color-primary, #337ab7);
     }
   }
 
@@ -152,24 +154,26 @@ export const SceneStyle = styled.div`
 
     max-width: 800px;
 
-    margin: 20px 10px 0px 0px;
-    padding: 8px;
+    margin: var(--em-space-5, 20px) var(--em-space-2, 10px) 0px 0px;
+    padding: var(--em-space-2, 8px);
 
-    border: 1px solid ${(props) => props.theme.border3};
-    border-radius: 4px;
+    border: 1px solid var(--em-border-default, ${(props) => props.theme.border3});
+    border-radius: var(--em-radius-md, 6px);
+    background-color: var(--em-bg-elevated);
+    box-shadow: var(--em-shadow-sm);
 
     h3 {
       display: inline-block;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: var(--em-font-size-base, 14px);
+      font-weight: var(--em-font-weight-bold, 700);
     }
 
     p {
       padding: 0;
-      margin: 4px 0 0 0;
+      margin: var(--em-space-1, 4px) 0 0 0;
 
-      font-size: 12px;
-      line-height: 18px;
+      font-size: var(--em-font-size-sm, 12px);
+      line-height: var(--em-line-height-normal, 18px);
     }
   }
 
