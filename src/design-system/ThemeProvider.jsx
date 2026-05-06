@@ -132,6 +132,14 @@ export function ThemeProvider({
         // intentionally lighter for use as link/icon foreground on a dark
         // page bg, but it would only hit ~2.96:1 with white.
         colorPrimary: theme.em_bg_brand_solid,
+        // AntD derives `colorLink` from `colorPrimary` by default. Override
+        // it back to the lighter `em_color_primary` so plain `<a>` text and
+        // `Typography.Link` stay readable in dark mode (5.5:1 against
+        // `#242529`); using brand-solid as the link color would fail
+        // (`#337ab7` on `#242529` is only 1.94:1).
+        colorLink: theme.em_color_primary,
+        colorLinkHover: theme.em_color_primary_hover,
+        colorLinkActive: theme.em_color_primary_hover,
         // Override `colorError` so danger buttons and links use our
         // contrast-checked danger token (default `#ff4d4f` on white only
         // hits 3.26:1; `#cf1322` reaches 5.94:1).
@@ -156,6 +164,8 @@ export function ThemeProvider({
   }, [
     resolvedDark,
     theme.em_bg_brand_solid,
+    theme.em_color_primary,
+    theme.em_color_primary_hover,
     theme.em_color_danger,
     theme.em_text_secondary,
     theme.em_radius_md,
