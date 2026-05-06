@@ -1,0 +1,7 @@
+{
+  "manifest_version": 3,
+  "name": "Test Helper Two",
+  "version": "0.0.1",
+  "description": "Second no-op extension used by the visual regression suite.",
+  "icons": {}
+}

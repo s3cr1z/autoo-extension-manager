@@ -1,0 +1,4 @@
+{
+  "_comment": "Rule IDs in `tolerated` are critical/serious axe-core violations the suite has chosen to temporarily accept. Each entry is a deferred fix; remove an ID from this list once the underlying violation is resolved. CI fails on any critical/serious violation whose ID is NOT in this list. See docs/testing.md → 'A11y baseline' for context on each entry.",
+  "tolerated": ["color-contrast", "aria-input-field-name", "button-name", "role-img-alt"]
+}

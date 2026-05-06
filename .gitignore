@@ -30,3 +30,9 @@ src/utils/secret.js
 .VSCodeCounter/
 
 builderEnv.temp.js
+
+# playwright
+/playwright-report
+/test-results
+/blob-report
+/playwright/.cache
