@@ -39,9 +39,13 @@ export default defineConfig({
   },
   expect: {
     toHaveScreenshot: {
-      // Allow tiny anti-aliasing differences. Tighten as the suite stabilises.
-      maxDiffPixelRatio: 0.02,
-      animations: "disabled"
+      // Baselines are captured in the same Docker image CI uses, so diffs
+      // should be near-zero. 0.1% gives room for subtle anti-aliasing noise.
+      maxDiffPixelRatio: 0.001,
+      animations: "disabled",
+      // Hide the blinking text caret — otherwise the empty-search-results
+      // spec races the cursor's blink phase and produces flaky diffs.
+      caret: "hide"
     }
   },
   projects: [

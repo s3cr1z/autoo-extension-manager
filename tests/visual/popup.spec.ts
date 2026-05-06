@@ -44,11 +44,16 @@ test.describe("popup — visual regression", () => {
     await page.goto(`${extensionURL}/popup.html`)
     await waitForReady(page)
     await setTheme(page, "light")
+    await waitForReady(page)
 
     // Press the documented `f` shortcut to open the search bar.
     await page.keyboard.press("KeyF")
-    // Wait for the search input slide-down animation to finish.
-    await page.waitForTimeout(250)
+    // Wait for the search input itself rather than a fixed timeout — the
+    // slide-down animation can take longer than expected on slow CI.
+    await page
+      .locator('input[type="search"], input[type="text"]')
+      .first()
+      .waitFor({ state: "visible" })
 
     await expect(page).toHaveScreenshot("popup-search-open-light.png", {
       mask: [page.locator(".extension-count")],
@@ -60,13 +65,20 @@ test.describe("popup — visual regression", () => {
     await page.goto(`${extensionURL}/popup.html`)
     await waitForReady(page)
     await setTheme(page, "light")
+    await waitForReady(page)
 
     await page.keyboard.press("KeyF")
-    await page.waitForTimeout(250)
-    // Type a query that won't match the helper extensions.
+    // Wait for the search input to actually be present and focused before
+    // typing — otherwise the keystrokes can race the slide-down animation.
+    const searchInput = page.locator('input[type="search"], input[type="text"]').first()
+    await searchInput.waitFor({ state: "visible" })
+
     await page.keyboard.type("zzz_no_match_zzz")
-    // Throttled search has a 500ms tail; wait it out.
-    await page.waitForTimeout(700)
+    // The empty-state copy is rendered after the throttled search settles;
+    // waiting for it is more reliable than a fixed timeout.
+    await page
+      .getByText(/No extensions match|没有匹配的扩展|一致する拡張機能はありません/)
+      .waitFor()
 
     await expect(page).toHaveScreenshot("popup-empty-search-light.png", {
       mask: [page.locator(".extension-count")],

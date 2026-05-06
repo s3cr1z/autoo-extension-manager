@@ -38,7 +38,13 @@ function loadKnownIssues(): KnownIssues {
     cached = { tolerated: [] }
     return cached
   }
-  cached = JSON.parse(fs.readFileSync(KNOWN_ISSUES_PATH, "utf8")) as KnownIssues
+  try {
+    const content = fs.readFileSync(KNOWN_ISSUES_PATH, "utf8")
+    const parsed = JSON.parse(content) as KnownIssues
+    cached = parsed && Array.isArray(parsed.tolerated) ? parsed : { tolerated: [] }
+  } catch {
+    cached = { tolerated: [] }
+  }
   return cached
 }
 
