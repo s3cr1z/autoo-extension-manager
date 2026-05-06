@@ -39,6 +39,7 @@ const FunctionSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_func_witch_group")}
           checked={isRaiseEnableWhenSwitchGroup}
           onChange={(value) =>
             onSettingChange(value, setIsRaiseEnableWhenSwitchGroup, "isRaiseEnableWhenSwitchGroup")
@@ -50,6 +51,7 @@ const FunctionSetting = memo(({ setting, onSettingChange }) => {
           <span>{getLang("setting_func_group_allow_multi")}</span>
           <Switch
             size="small"
+            aria-label={getLang("setting_func_group_allow_multi")}
             checked={isSupportMultiSelectGroup}
             onChange={(value) =>
               onSettingChange(value, setIsSupportMultiSelectGroup, "isSupportMultiSelectGroup")
@@ -64,6 +66,7 @@ const FunctionSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_func_home_link_store")}
           checked={isHomeLinkToStore}
           onChange={(value) =>
             onSettingChange(value, setIsHomeLinkToStore, "isHomeLinkToStore")

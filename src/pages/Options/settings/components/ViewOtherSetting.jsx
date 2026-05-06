@@ -39,6 +39,7 @@ const ViewOtherSetting = memo(({ setting, onSettingChange }) => {
       <div className="setting-item">
         <span>{getLang("setting_popup_scale_title")}</span>
         <Slider
+          ariaLabelForHandle={getLang("setting_popup_scale_title")}
           style={{ width: 100, margin: "0 10px 0 0" }}
           defaultValue={100}
           value={zoomRatio}

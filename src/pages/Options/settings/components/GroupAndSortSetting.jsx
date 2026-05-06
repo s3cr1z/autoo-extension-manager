@@ -52,6 +52,7 @@ const GroupAndSortSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_ui_show_by_group")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_show_by_group")}
           checked={isDisplayByGroup}
           onChange={(value) =>
             onSettingChange(value, setIsDisplayByGroup, "isDisplayByGroup")
@@ -63,6 +64,7 @@ const GroupAndSortSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_ui_top_recently_enabled")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_top_recently_enabled")}
           checked={isTopRecentlyEnabled}
           onChange={(value) =>
             onSettingChange(value, setIsTopRecentlyEnabled, "isTopRecentlyEnabled")
@@ -74,6 +76,7 @@ const GroupAndSortSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_ui_top_recently_update")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_top_recently_update")}
           checked={isTopRecentlyUpdate}
           onChange={(value) =>
             onSettingChange(value, setIsTopRecentlyUpdate, "isTopRecentlyUpdate")
@@ -132,6 +135,7 @@ const GroupAndSortSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_list_sort_type")}
           checked={isSortByFrequency}
           onChange={(value) =>
             onSettingChange(value, setIsSortByFrequency, "isSortByFrequency")
@@ -159,6 +163,7 @@ const GroupAndSortSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_ui_refresh_after_enable_disable")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_refresh_after_enable_disable")}
           checked={isRefreshAfterEnableDisable ?? true}
           onChange={(value) =>
             onSettingChange(value, setIsRefreshAfterEnableDisable, "isRefreshAfterEnableDisable")

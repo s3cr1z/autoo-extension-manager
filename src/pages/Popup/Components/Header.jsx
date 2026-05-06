@@ -287,7 +287,7 @@ const Header = memo((props) => {
                   onSearchClick()
                 }
               }}>
-              <SearchOutlined />
+              <SearchOutlined aria-hidden="true" />
             </Space>
 
             <Space
@@ -303,7 +303,7 @@ const Header = memo((props) => {
                   onLayoutClick()
                 }
               }}>
-              <Icon component={LayoutSvg}></Icon>
+              <Icon component={LayoutSvg} aria-hidden="true"></Icon>
             </Space>
 
             <Space
@@ -318,13 +318,13 @@ const Header = memo((props) => {
                   onSettingClick(e)
                 }
               }}>
-              <SettingOutlined />
+              <SettingOutlined aria-hidden="true" />
             </Space>
 
             <Suspense
               fallback={
                 <span aria-label={moreLabel} role="img">
-                  <MenuOutlined />
+                  <MenuOutlined aria-hidden="true" />
                 </span>
               }>
               <LazyMoreOperationDropdown

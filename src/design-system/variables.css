@@ -18,7 +18,11 @@
   --em-color-accent-deep: #27b0d4;
   --em-color-success: #3ffa7b;
   --em-color-warning: #faad14;
-  --em-color-danger: #ff4d4f;
+  --em-color-danger: #cf1322;
+
+  /* Solid brand background that always pairs with white text. */
+  --em-bg-brand-solid: #337ab7;
+  --em-text-on-brand: #ffffff;
 
   /* Surfaces */
   --em-bg-primary: #ffffff;
@@ -28,8 +32,8 @@
 
   /* Text */
   --em-text-primary: #242529;
-  --em-text-secondary: #666666;
-  --em-text-disabled: #888888;
+  --em-text-secondary: #595959;
+  --em-text-disabled: #757575;
   --em-text-on-primary: #ffffff;
 
   /* Borders */

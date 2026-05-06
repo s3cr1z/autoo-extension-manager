@@ -85,6 +85,7 @@ const SearchSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_search_display")}
           checked={isShowSearchBar}
           onChange={(value) =>
             onSettingChange(value, setIsShowSearchBar, "isShowSearchBarDefault")
@@ -101,6 +102,7 @@ const SearchSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_search_jump")}
           checked={isSupportSearchAppStore}
           onChange={(value) =>
             onSettingChange(value, setIsSupportSearchAppStore, "isSupportSearchAppStore")

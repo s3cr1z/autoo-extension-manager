@@ -56,8 +56,8 @@ export const NavigationStyle = styled.nav`
     }
 
     &.active {
-      background-color: var(--em-color-primary, #337ab7);
-      color: var(--em-text-on-primary, #fff);
+      background-color: var(--em-bg-brand-solid, #337ab7);
+      color: var(--em-text-on-brand, #fff);
 
       &::before {
         background-color: var(--em-color-primary-hover, #23527c);

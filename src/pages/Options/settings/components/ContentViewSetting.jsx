@@ -80,6 +80,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_show_app")}
           checked={isShowApp}
           onChange={(value) => onSettingChange(value, setIsShowApp, "isShowApp")}></Switch>
       </div>
@@ -94,6 +95,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_show_fixed_extension")}
           checked={isShowFixedExtension}
           onChange={(value) =>
             onSettingChange(value, setIsShowFixedExtension, "isShowFixedExtension")
@@ -110,6 +112,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_show_hidden_extension")}
           checked={isShowHiddenExtension}
           onChange={(value) =>
             onSettingChange(value, setIsShowHiddenExtension, "isShowHiddenExtension")
@@ -121,6 +124,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_ui_show_fixed_dot")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_ui_show_fixed_dot")}
           checked={isShowDotOfFixedExtension}
           onChange={(value) =>
             onSettingChange(value, setIsShowDotOfFixedExtension, "isShowDotOfFixedExtension")
@@ -132,6 +136,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_list_view_show_button")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_list_view_show_button")}
           checked={isShowItemOperationAlways}
           onChange={(value) =>
             onSettingChange(value, setIsShowItemOperationAlways, "isShowItemOperationAlways")
@@ -148,6 +153,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         </span>
         <Switch
           size="small"
+          aria-label={getLang("setting_list_gird_show_name")}
           checked={isShowAppNameInGirdView}
           onChange={(value) =>
             onSettingChange(value, setIsShowAppNameInGirdView, "isShowAppNameInGirdView")
@@ -160,6 +166,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
           {getLang("setting_list_gird_show_column_number")} ({columnCountInGirdView})
         </span>
         <Slider
+          ariaLabelForHandle={getLang("setting_list_gird_show_column_number")}
           style={{ width: 100, margin: "0 10px 0 0" }}
           defaultValue={30}
           value={columnCountInGirdView}
@@ -177,6 +184,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_list_gird_show_disable_gray")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_list_gird_show_disable_gray")}
           checked={isGaryStyleOfDisableInGridView}
           onChange={(value) =>
             onSettingChange(
@@ -192,6 +200,7 @@ const ContentViewSetting = memo(({ setting, onSettingChange }) => {
         <span>{getLang("setting_list_gird_show_menu_right_click")}</span>
         <Switch
           size="small"
+          aria-label={getLang("setting_list_gird_show_menu_right_click")}
           checked={isMenuDisplayByRightClick}
           onChange={(value) =>
             onSettingChange(value, setIsMenuDisplayByRightClick, "isMenuDisplayByRightClick")

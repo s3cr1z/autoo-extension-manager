@@ -43,7 +43,11 @@ export const GroupNavStyle = styled.div`
   }
 
   .selected-group-item {
-    background: var(--em-color-primary, #337ab788);
+    background: var(--em-bg-brand-solid, #337ab7);
+
+    h3 {
+      color: var(--em-text-on-brand, #fff);
+    }
   }
 
   .add-new-group {
