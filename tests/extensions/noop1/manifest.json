@@ -1,0 +1,7 @@
+{
+  "manifest_version": 3,
+  "name": "Test Helper One",
+  "version": "0.0.1",
+  "description": "Lightweight no-op extension used to populate the popup list during Playwright tests.",
+  "icons": {}
+}
