@@ -88,15 +88,56 @@ Additional helpers in `tests/fixtures/theme.ts`:
 
 ## CI
 
-`.github/workflows/test.yml` runs the full suite on every PR and on
-pushes to `master`. The job:
+The suite is designed to run inside the official Playwright Docker image
+so font rendering matches the captured baselines byte-for-byte. The
+intended GitHub Actions workflow is below — copy it to
+`.github/workflows/test.yml`:
 
-1. `npm ci`
-2. `npx playwright install --with-deps chromium` (cached by `package-lock.json`)
-3. `npm run build`
-4. `npx playwright test --config=tests/playwright.config.ts`
-5. Uploads the HTML report (always) and `test-results/` (only on failure)
-   so screenshot diffs are inspectable without re-running.
+```yaml
+name: tests
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+jobs:
+  e2e:
+    name: visual + a11y (Playwright)
+    runs-on: ubuntu-22.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
+      options: --user 1001
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright test --config=tests/playwright.config.ts
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 14
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: test-results
+          retention-days: 14
+```
+
+Pin the container tag to the same minor as `@playwright/test` in
+`package.json` (`v1.59.1-jammy` at the time of writing). When upgrading
+Playwright, bump both in the same commit.
 
 Both `playwright-report/` and `test-results/` are git-ignored.
 
