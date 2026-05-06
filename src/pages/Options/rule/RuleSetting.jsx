@@ -93,14 +93,7 @@ function RuleSetting() {
       <Title title={getLang("rule_title")}></Title>
 
       {ruleConfigsReady && ruleConfigs.length === 0 ? (
-        <>
-          <ViewRule
-            options={options}
-            configs={ruleConfigs}
-            extensions={extensions}
-            operation={operation}></ViewRule>
-          <EmptyState title={getLang("rule_title")} description={getLang("rule_set_match_add")} />
-        </>
+        <EmptyState title={getLang("rule_title")} description={getLang("rule_set_match_add")} />
       ) : (
         <ViewRule
           options={options}
