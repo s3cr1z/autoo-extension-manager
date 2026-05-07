@@ -5,6 +5,7 @@ const Style = styled.div`
     display: inline-block;
     margin-top: var(--em-space-3, 10px);
     margin-bottom: var(--em-space-5, 20px);
+    padding: var(--em-space-3, 12px) 0 0;
     border-top: 1px solid var(--em-border-default, ${(props) => props.theme.border3});
 
     & > button {

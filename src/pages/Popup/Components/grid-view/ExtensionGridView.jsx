@@ -2,6 +2,7 @@ import React, { memo, useCallback, useState } from "react"
 
 import { styled } from "styled-components"
 
+import { getLang } from ".../utils/utils"
 import { usePopupExtensions } from "../../utils/usePopupExtensions"
 import ExtensionGridItem from "./ExtensionGridItem"
 
@@ -28,7 +29,7 @@ const ExtensionGrid = memo(({ extensions, options, isShowBottomDivider }) => {
 
   return (
     <GridViewSpaceStyle>
-      <ul>
+      <ul role="list" aria-label={getLang("a11y_pinned_extensions")}>
         {items0.map((item) => {
           return (
             <li key={item.id}>
@@ -41,7 +42,7 @@ const ExtensionGrid = memo(({ extensions, options, isShowBottomDivider }) => {
         ))}
       </ul>
       {dividerShow0 && <div className="divider"></div>}
-      <ul>
+      <ul role="list" aria-label={getLang("a11y_enabled_extensions")}>
         {items1.map((item) => {
           return (
             <li key={item.id}>
@@ -57,7 +58,7 @@ const ExtensionGrid = memo(({ extensions, options, isShowBottomDivider }) => {
         ))}
       </ul>
       {items1.length > 0 && items2.length > 0 && <div className="divider"></div>}
-      <ul>
+      <ul role="list" aria-label={getLang("a11y_disabled_extensions")}>
         {items2.map((item) => {
           return (
             <li key={item.id}>
@@ -103,7 +104,7 @@ export const GridViewSpaceStyle = styled.div`
 
   .divider {
     height: 1px;
-    background-color: ${(props) => props.theme.input_border};
+    background-color: var(--em-border-strong, ${(props) => props.theme.input_border});
     margin: 0px 10px 0px 10px;
   }
 `

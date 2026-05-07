@@ -1,9 +1,10 @@
 import React, { memo, useEffect, useState } from "react"
 
 import { DeleteFilled, EditFilled, PlusCircleOutlined } from "@ant-design/icons"
-import { Popconfirm, Switch, message } from "antd"
+import { Popconfirm, message } from "antd"
 import classNames from "classnames"
 
+import { EmptyState, Switch } from ".../design-system"
 import storage from ".../storage/sync"
 import analytics from ".../utils/googleAnalyze.js"
 import { sendMessage } from ".../utils/messageHelper.js"
@@ -124,20 +125,34 @@ function Scene() {
       {/* 情景模式列表 */}
 
       <div className="scene-item-container">
-        <SortableList
-          items={sceneList}
-          onChange={handleDropEnd}
-          renderItem={(item) => (
-            <SortableList.Item id={item.id}>
-              {buildSceneItem(item)}
-              <SortableList.DragHandle />
-            </SortableList.Item>
-          )}></SortableList>
+        {sceneList.length === 0 ? (
+          <EmptyState title={getLang("scene_title")} description={getLang("scene_add_new")} />
+        ) : (
+          <SortableList
+            items={sceneList}
+            onChange={handleDropEnd}
+            renderItem={(item) => (
+              <SortableList.Item id={item.id}>
+                {buildSceneItem(item)}
+                <SortableList.DragHandle />
+              </SortableList.Item>
+            )}></SortableList>
+        )}
       </div>
 
       <div className="scene-item-handler-container">
         {/* 新建情景模式 */}
-        <div className="scene-item scene-item-new" onClick={(e) => onNewSceneClick(e)}>
+        <div
+          className="scene-item scene-item-new"
+          role="button"
+          tabIndex={0}
+          onClick={(e) => onNewSceneClick(e)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault()
+              onNewSceneClick(e)
+            }
+          }}>
           <h3>{getLang("scene_add_new")}</h3>
           <PlusCircleOutlined className="scene-item-add-icon" />
         </div>
@@ -211,7 +226,19 @@ function Scene() {
           }
         ])}
         key={item.id}
-        onClick={onSceneItemClick}>
+        role="button"
+        tabIndex={0}
+        aria-pressed={item.id === selectedScene?.id}
+        onClick={onSceneItemClick}
+        onKeyDown={(e) => {
+          if (e.target !== e.currentTarget) {
+            return
+          }
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            onSceneItemClick()
+          }
+        }}>
         <div className="scene-item-edit-container">
           <div className="scene-item-edit-icon">
             <EditFilled style={{ marginRight: 8 }} onClick={(e) => onEditClick(e, item)} />
@@ -229,7 +256,12 @@ function Scene() {
         </div>
 
         <h3 className="scene-item-name">{item.name}</h3>
-        <Switch size="small" checked={item.isActive} onChange={(e) => onActiveChange(e, item)} />
+        <Switch
+          size="small"
+          aria-label={`${getLang("scene_current_active")} ${item.name}`}
+          checked={item.isActive}
+          onChange={(e) => onActiveChange(e, item)}
+        />
       </div>
     )
   }

@@ -74,7 +74,13 @@ const Style = styled.div`
     }
 
     :hover {
-      color: var(--em-color-danger, #9e1068);
+      color: var(--em-color-danger);
+    }
+
+    [role="button"]:focus-visible {
+      outline: 2px solid var(--em-color-primary);
+      outline-offset: 2px;
+      border-radius: var(--em-radius-sm, 4px);
     }
   }
 

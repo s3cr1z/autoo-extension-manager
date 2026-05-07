@@ -1,5 +1,6 @@
 import React from "react"
 
+import { RowSkeleton } from ".../design-system"
 import analytics from ".../utils/googleAnalyze.js"
 import ExtensionManage from "./ExtensionManage.jsx"
 import { useInit } from "./hooks/useInit.js"
@@ -15,7 +16,7 @@ const ExtensionManageTable = () => {
   })
 
   if (!options) {
-    return null
+    return <RowSkeleton rows={8} />
   }
 
   return <ExtensionManage extensions={extensions} options={options}></ExtensionManage>

@@ -35,9 +35,9 @@ const AppList = memo(({ items }) => {
   return (
     <AppListStyle>
       {contextHolder}
-      <ul role="list" aria-label={getLang("app_list_title") || "Apps"}>
+      <ul role="list" aria-label={getLang("app_list_title")}>
         {items.map((item) => {
-          const launchLabel = `${getLang("launch_app") || "Launch"} ${item.shortName}`
+          const launchLabel = `${getLang("launch_app")} ${item.shortName}`
           return (
             <li
               key={item.id}

@@ -12,7 +12,7 @@ export const SceneStyle = styled.div`
   .scene-item-container {
     max-width: 800px;
 
-    margin: 24px 0;
+    margin: var(--em-space-6, 24px) 0;
 
     user-select: none;
   }
@@ -34,24 +34,18 @@ export const SceneStyle = styled.div`
     display: flex;
     align-items: center;
 
-    padding: 4px 8px;
-    margin: 4px 4px 4px 0px;
-
-    /* border: 1px solid #ccca;
-    border-radius: 4px; */
-    /* box-shadow: 1px 1px 4px 0px #337ab788; */
-
-    /* &:hover {
-      background-color: #337ab7cc;
-    } */
+    padding: var(--em-space-1, 4px) var(--em-space-2, 8px);
+    margin: var(--em-space-1, 4px) var(--em-space-1, 4px) var(--em-space-1, 4px) 0;
+    border-radius: var(--em-radius-md, 6px);
+    transition: var(--em-transition-hover);
 
     h3 {
       flex: 1 1 auto;
 
-      margin-right: 24px;
+      margin-right: var(--em-space-6, 24px);
 
-      font-size: 14px;
-      font-weight: 700;
+      font-size: var(--em-font-size-base, 14px);
+      font-weight: var(--em-font-weight-bold, 700);
 
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -83,7 +77,7 @@ export const SceneStyle = styled.div`
     left: 6px;
     padding-bottom: 16px;
 
-    animation: menu-edit-in 0.3s ease-out 0.2s forwards;
+    animation: menu-edit-in var(--em-duration-slow, 300ms) var(--em-easing-ease-out) 0.2s forwards;
 
     .scene-item-edit-icon {
       display: flex;
@@ -97,18 +91,17 @@ export const SceneStyle = styled.div`
       box-shadow: var(--em-shadow-sm, 1px 1px 2px 0px ${(props) => props.theme.scene_edit_shadow});
 
       font-size: 20px;
-      color: var(--em-color-primary, #337ab7);
+      color: var(--em-color-primary);
 
       & > span:hover {
         cursor: pointer;
-        color: var(--em-color-primary-hover, #337ab7cc);
+        color: var(--em-color-primary-hover);
       }
     }
   }
 
   .scene-item-selected {
-    /* background-color: #337ab788; */
-    color: var(--em-color-primary, #337ab7);
+    color: var(--em-color-primary);
     font-weight: var(--em-font-weight-bold, 900);
   }
 
@@ -123,7 +116,7 @@ export const SceneStyle = styled.div`
   .scene-item-name {
     transition: color var(--em-duration-fast, 150ms) var(--em-easing-ease-out);
     &:hover {
-      color: var(--em-color-primary, #337ab7);
+      color: var(--em-color-primary);
     }
   }
 
@@ -142,7 +135,7 @@ export const SceneStyle = styled.div`
     .scene-item-add-icon {
       font-size: var(--em-font-size-lg, 16px);
       margin-right: var(--em-space-1, 6px);
-      color: var(--em-color-primary, #337ab7);
+      color: var(--em-color-primary);
     }
   }
 

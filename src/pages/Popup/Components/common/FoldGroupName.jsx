@@ -5,6 +5,8 @@ import { Space } from "antd"
 import localforage from "localforage"
 import styled from "styled-components"
 
+import { getLang } from ".../utils/utils"
+
 const groupExpandForage = localforage.createInstance({
   driver: localforage.LOCALSTORAGE,
   name: "LocalOptions",
@@ -39,9 +41,23 @@ const FoldGroupName = memo(({ group, onFoldChanged }) => {
     }
   }
 
+  const label = `${fold ? getLang("a11y_expand") : getLang("a11y_collapse")} ${group.name}`
+
   return (
     <Style>
-      <span className="fold-text" onClick={onFoldClick}>
+      <span
+        className="fold-text"
+        role="button"
+        tabIndex={0}
+        aria-label={label}
+        aria-expanded={!fold}
+        onClick={onFoldClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            onFoldClick()
+          }
+        }}>
         <Space className="fold-icon">{fold ? <CaretRightOutlined /> : <CaretDownOutlined />}</Space>{" "}
         {group.name}
       </span>
@@ -58,8 +74,8 @@ const Style = styled.span`
   }
 
   .fold-icon {
-    margin-right: 4px;
-    color: #888;
-    font-size: 10px;
+    margin-right: var(--em-space-1, 4px);
+    color: var(--em-text-secondary);
+    font-size: var(--em-font-size-xs, 11px);
   }
 `

@@ -2,6 +2,8 @@ import React from "react"
 
 import { Skeleton as AntSkeleton } from "antd"
 
+import { getLang } from ".../utils/utils"
+
 /**
  * Design-system Skeleton — re-exports `antd/Skeleton` for convenience and
  * exposes a small `<RowSkeleton />` helper that approximates the height of
@@ -16,7 +18,7 @@ export function RowSkeleton({ rows = 6 }) {
   return (
     <div
       role="status"
-      aria-label="Loading extensions"
+      aria-label={getLang("a11y_loading_extensions")}
       style={{ padding: "var(--em-space-2, 8px)" }}>
       {Array.from({ length: rows }).map((_, i) => (
         <div

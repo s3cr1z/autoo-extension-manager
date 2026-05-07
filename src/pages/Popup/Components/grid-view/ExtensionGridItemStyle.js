@@ -18,7 +18,7 @@ export const ExtensionGridItemStyle = styled.div`
   }
 
   .grid-display-item:focus-visible {
-    outline: 2px solid var(--em-color-primary, #337ab7);
+    outline: 2px solid var(--em-color-primary);
     outline-offset: 2px;
   }
 
@@ -55,15 +55,15 @@ export const ExtensionGridItemStyle = styled.div`
 
     font-size: var(--em-font-size-sm, 12px);
     line-height: var(--em-line-height-tight, 1.4);
-    color: var(--em-text-on-primary, #fff);
-    background-color: rgba(0, 0, 0, 0.78);
+    color: var(--em-text-on-primary);
+    background-color: var(--em-overlay-bg);
     border-radius: var(--em-radius-sm, 4px);
     white-space: normal;
     word-break: break-word;
     pointer-events: none;
     user-select: none;
 
-    box-shadow: var(--em-shadow-md, 0 2px 6px rgba(0, 0, 0, 0.2));
+    box-shadow: var(--em-shadow-md);
   }
 
   .grid-name-tooltip-show {
@@ -79,12 +79,12 @@ export const ExtensionGridItemStyle = styled.div`
 
   .tooltip-arrow-top {
     top: -4px;
-    border-bottom: 4px solid rgba(0, 0, 0, 0.78);
+    border-bottom: 4px solid var(--em-overlay-bg);
   }
 
   .tooltip-arrow-bottom {
     bottom: -4px;
-    border-top: 4px solid rgba(0, 0, 0, 0.78);
+    border-top: 4px solid var(--em-overlay-bg);
   }
 
   .grid-display-item-title-gray {
@@ -100,11 +100,11 @@ export const ExtensionGridItemStyle = styled.div`
     height: 12px;
     margin: 0;
 
-    border: 2px solid var(--em-bg-primary, #fff);
+    border: 2px solid var(--em-bg-primary);
     border-radius: var(--em-radius-full, 6px);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--em-ring-subtle);
 
-    background-color: var(--em-color-success, #3ffa7b);
+    background-color: var(--em-color-success);
   }
 
   .operation-menu {
@@ -116,9 +116,9 @@ export const ExtensionGridItemStyle = styled.div`
     z-index: 1000;
 
     border-radius: var(--em-radius-sm, 4px);
-    background-color: var(--em-color-accent, #24bfc4);
+    background-color: var(--em-color-accent);
 
-    box-shadow: var(--em-shadow-md, 0 2px 6px rgba(36, 193, 192, 0.4));
+    box-shadow: var(--em-shadow-accent);
   }
 
   /* Disabled hover-menu styling */
@@ -128,7 +128,7 @@ export const ExtensionGridItemStyle = styled.div`
 
   .operation-menu-title {
     padding: var(--em-space-2, 8px) var(--em-space-3, 12px);
-    color: var(--em-text-on-primary, #fff);
+    color: var(--em-text-on-primary);
     text-align: center;
 
     overflow: hidden;
@@ -136,7 +136,7 @@ export const ExtensionGridItemStyle = styled.div`
     white-space: nowrap;
 
     border-radius: var(--em-radius-sm, 4px) var(--em-radius-sm, 4px) 0 0;
-    background-color: var(--em-color-accent-deep, #27b0d4);
+    background-color: var(--em-color-accent-deep);
   }
 
   .operation-menu-items {
@@ -148,7 +148,7 @@ export const ExtensionGridItemStyle = styled.div`
     padding: 2px var(--em-space-2, 8px);
 
     font-size: 22px;
-    color: var(--em-text-on-primary, #fff);
+    color: var(--em-text-on-primary);
   }
 
   .menu-on {
@@ -198,7 +198,7 @@ export const ExtensionGridItemStyle = styled.div`
   }
 
   .operation-menu-item-disabled {
-    color: var(--em-border-strong, #ccc);
+    color: var(--em-border-strong);
   }
 
   .operation-menu-item {
@@ -208,8 +208,8 @@ export const ExtensionGridItemStyle = styled.div`
     &:hover,
     &:focus-visible {
       transform: scale(1.2);
-      color: var(--em-color-primary, #346dbc);
-      text-shadow: 2px 2px 4px var(--em-color-accent, #24bfc4);
+      color: var(--em-color-primary);
+      text-shadow: 2px 2px 4px var(--em-color-accent);
       outline: none;
     }
   }

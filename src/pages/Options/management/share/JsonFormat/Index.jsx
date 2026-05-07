@@ -79,8 +79,8 @@ const Style = styled.div`
 
     margin: 12px 0;
     padding: 8px 0;
-    border: 1px solid #eee;
-    border-radius: 4px;
+    border: 1px solid var(--em-border-default);
+    border-radius: var(--em-radius-sm, 4px);
 
     font-family: "Courier New", Courier, monospace;
 

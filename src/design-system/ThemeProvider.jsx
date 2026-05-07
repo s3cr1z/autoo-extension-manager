@@ -10,6 +10,7 @@ import React, {
 import { ConfigProvider, theme as antdTheme } from "antd"
 import { ThemeProvider as StyledThemeProvider } from "styled-components"
 
+import storage from ".../storage/sync"
 import { applyCssVariables, darkTheme, lightTheme } from "./tokens"
 
 // Fall back to useEffect during server-side rendering where useLayoutEffect
@@ -59,6 +60,28 @@ export function ThemeProvider({
   const [resolvedDark, setResolvedDark] = useState(() =>
     typeof isDarkModeProp === "boolean" ? isDarkModeProp : resolveDark(mode)
   )
+  const [storedMode, setStoredMode] = useState(mode)
+
+  useEffect(() => {
+    let canceled = false
+
+    if (typeof isDarkModeProp === "boolean") {
+      setStoredMode(mode)
+      return () => {
+        canceled = true
+      }
+    }
+
+    storage.options.getAll().then((options) => {
+      if (!canceled) {
+        setStoredMode(options?.setting?.darkMode ?? mode)
+      }
+    })
+
+    return () => {
+      canceled = true
+    }
+  }, [mode, isDarkModeProp])
 
   // React to mode / explicit-prop changes.
   useEffect(() => {
@@ -66,19 +89,19 @@ export function ThemeProvider({
       setResolvedDark(isDarkModeProp)
       return
     }
-    setResolvedDark(resolveDark(mode))
-  }, [mode, isDarkModeProp])
+    setResolvedDark(resolveDark(storedMode))
+  }, [storedMode, isDarkModeProp])
 
   // Listen for system preference changes when in "system" mode.
   useEffect(() => {
     if (typeof isDarkModeProp === "boolean") return
-    if (mode !== "system") return
+    if (storedMode !== "system") return
     if (typeof window === "undefined" || !window.matchMedia) return
     const mq = window.matchMedia("(prefers-color-scheme: dark)")
     const handler = (e) => setResolvedDark(e.matches)
     mq.addEventListener?.("change", handler)
     return () => mq.removeEventListener?.("change", handler)
-  }, [mode, isDarkModeProp])
+  }, [storedMode, isDarkModeProp])
 
   const theme = resolvedDark ? darkTheme : lightTheme
 
@@ -115,8 +138,8 @@ export function ThemeProvider({
   }, [theme, applyBodyBackground])
 
   const ctx = useMemo(
-    () => ({ isDarkMode: resolvedDark, mode, theme }),
-    [resolvedDark, mode, theme]
+    () => ({ isDarkMode: resolvedDark, mode: storedMode, theme }),
+    [resolvedDark, storedMode, theme]
   )
 
   const antdConfig = useMemo(() => {

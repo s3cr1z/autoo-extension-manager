@@ -15,6 +15,10 @@ export const SettingStyle = styled.div`
     box-shadow: var(--em-shadow-sm);
   }
 
+  .settings-section {
+    margin-bottom: var(--em-space-4, 16px);
+  }
+
   .setting-sub-title {
     margin: var(--em-space-2, 10px) 0;
     font-size: var(--em-font-size-xl, 18px);

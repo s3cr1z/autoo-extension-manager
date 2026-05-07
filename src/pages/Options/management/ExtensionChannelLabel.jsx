@@ -41,18 +41,18 @@ const Style = styled.span`
     padding: 1px 5px;
     font-size: 12px;
     border-radius: 5px;
-    background-color: #73d13d33;
+    background-color: var(--em-bg-success-subtle);
   }
 
   .column-name-channel-Edge {
-    background-color: #40a9ff33;
+    background-color: var(--em-bg-info-subtle);
   }
 
   .column-name-channel-Chrome {
-    background-color: #ffa94033;
+    background-color: var(--em-bg-warning-subtle);
   }
 
   .column-name-channel-Development {
-    background-color: #ff4d4f33;
+    background-color: var(--em-bg-danger-subtle);
   }
 `

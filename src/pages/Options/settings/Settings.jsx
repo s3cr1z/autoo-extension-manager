@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useEffect, useState } from "react"
 
-import { QuestionCircleOutlined } from "@ant-design/icons"
-import { Button, Popconfirm, Radio, Slider, Switch, Tooltip, message } from "antd"
+import { Popconfirm, Tooltip, message } from "antd"
 import { fromJS } from "immutable"
 
+import { Button } from ".../design-system"
 import storage from ".../storage/sync"
 import { getLang } from ".../utils/utils"
 import Title from "../Title.jsx"
@@ -83,38 +83,57 @@ function Settings() {
       <h2 className="setting-sub-title">{getLang("setting_popup_ui_setting")}</h2>
 
       {/* 搜索 */}
-      <h3 className="setting-space-title">{getLang("setting_popup_setting_search")}</h3>
-      <div className="container">
-        <SearchSetting setting={setting} onSettingChange={onSettingChange}></SearchSetting>
-      </div>
+      <section className="settings-section" role="group" aria-labelledby="setting-search-title">
+        <h3 className="setting-space-title" id="setting-search-title">
+          {getLang("setting_popup_setting_search")}
+        </h3>
+        <div className="container">
+          <SearchSetting setting={setting} onSettingChange={onSettingChange}></SearchSetting>
+        </div>
+      </section>
 
       {/* 内容显示 */}
-      <h3 className="setting-space-title">{getLang("setting_popup_setting_display")}</h3>
-      <div className="container">
-        <ContentViewSetting
-          setting={setting}
-          onSettingChange={onSettingChange}></ContentViewSetting>
-      </div>
+      <section className="settings-section" role="group" aria-labelledby="setting-display-title">
+        <h3 className="setting-space-title" id="setting-display-title">
+          {getLang("setting_popup_setting_display")}
+        </h3>
+        <div className="container">
+          <ContentViewSetting
+            setting={setting}
+            onSettingChange={onSettingChange}></ContentViewSetting>
+        </div>
+      </section>
 
       {/* 分组与排序 */}
-      <h3 className="setting-space-title">{getLang("setting_popup_setting_group_sort")}</h3>
-      <div className="container">
-        <GroupAndSortSetting
-          setting={setting}
-          onSettingChange={onSettingChange}></GroupAndSortSetting>
-      </div>
+      <section className="settings-section" role="group" aria-labelledby="setting-group-title">
+        <h3 className="setting-space-title" id="setting-group-title">
+          {getLang("setting_popup_setting_group_sort")}
+        </h3>
+        <div className="container">
+          <GroupAndSortSetting
+            setting={setting}
+            onSettingChange={onSettingChange}></GroupAndSortSetting>
+        </div>
+      </section>
 
       {/* 其它 */}
-      <h3 className="setting-space-title">{getLang("setting_popup_setting_other")}</h3>
-      <div className="container">
-        <ViewOtherSetting setting={setting} onSettingChange={onSettingChange}></ViewOtherSetting>
-      </div>
+      <section className="settings-section" role="group" aria-labelledby="setting-other-title">
+        <h3 className="setting-space-title" id="setting-other-title">
+          {getLang("setting_popup_setting_other")}
+        </h3>
+        <div className="container">
+          <ViewOtherSetting setting={setting} onSettingChange={onSettingChange}></ViewOtherSetting>
+        </div>
+      </section>
 
-      <h2 className="setting-sub-title">{getLang("setting_popup_function_setting")}</h2>
-
-      <div className="container">
-        <FunctionSetting setting={setting} onSettingChange={onSettingChange}></FunctionSetting>
-      </div>
+      <section className="settings-section" role="group" aria-labelledby="setting-function-title">
+        <h3 className="setting-space-title" id="setting-function-title">
+          {getLang("setting_popup_function_setting")}
+        </h3>
+        <div className="container">
+          <FunctionSetting setting={setting} onSettingChange={onSettingChange}></FunctionSetting>
+        </div>
+      </section>
 
       <div className="import-export-container">
         <Button onClick={onImportConfig}>{getLang("setting_import_config")}</Button>

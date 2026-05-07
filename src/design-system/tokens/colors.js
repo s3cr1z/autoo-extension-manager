@@ -91,6 +91,10 @@ export const lightTheme = {
   em_color_success: brand.success,
   em_color_warning: brand.warning,
   em_color_danger: brand.danger,
+  em_bg_success_subtle: "#e8f7df",
+  em_bg_info_subtle: "#e6f4ff",
+  em_bg_warning_subtle: "#fff7e6",
+  em_bg_danger_subtle: "#fff1f0",
 
   // Solid brand background that always pairs with white text and meets
   // WCAG AA in both light and dark themes (white on `#337ab7` = 4.65:1).
@@ -114,8 +118,21 @@ export const lightTheme = {
   em_shadow_sm: "0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04)",
   em_shadow_md: "0 2px 8px rgba(0, 0, 0, 0.12)",
   em_shadow_lg: "0 4px 16px rgba(0, 0, 0, 0.18)",
+  em_shadow_inset: "inset 0 0 5px rgba(0, 0, 0, 0.2)",
+  em_shadow_accent: "0 2px 6px rgba(36, 193, 192, 0.4)",
 
   em_focus_ring: `0 0 0 2px ${brand.primary}66`,
+  em_focus_shadow: "0 0 0 2px #4c9ffe",
+  em_overlay_bg: "rgba(0, 0, 0, 0.78)",
+  em_ring_subtle: "0 0 0 1px rgba(0, 0, 0, 0.08)",
+  em_flash_success: "#95de64",
+  em_flash_success_transparent: "#95de6400",
+  em_sortable_item_bg: neutral[0],
+  em_sortable_item_color: neutral[900],
+  em_sortable_shadow:
+    "0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05), 0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15)",
+  em_drag_handle_hover_bg: "rgba(0, 0, 0, 0.05)",
+  em_drag_handle_fill: "#919eab",
   em_neutral: neutral
 }
 
@@ -163,6 +180,10 @@ export const darkTheme = {
   em_color_success: brand.success,
   em_color_warning: brand.warning,
   em_color_danger: brand.dangerDark,
+  em_bg_success_subtle: "#22381f",
+  em_bg_info_subtle: "#17324d",
+  em_bg_warning_subtle: "#473315",
+  em_bg_danger_subtle: "#4a2020",
 
   // Same `#337ab7` as light mode so white text on active states keeps the
   // 4.65:1 contrast ratio. Using `primaryDark` as a background failed at
@@ -187,8 +208,21 @@ export const darkTheme = {
   em_shadow_sm: "0 1px 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04)",
   em_shadow_md: "0 2px 8px rgba(0, 0, 0, 0.5)",
   em_shadow_lg: "0 4px 16px rgba(0, 0, 0, 0.6)",
+  em_shadow_inset: "inset 0 0 5px rgba(0, 0, 0, 0.2)",
+  em_shadow_accent: "0 2px 6px rgba(36, 193, 192, 0.35)",
 
   em_focus_ring: `0 0 0 2px ${brand.primaryDark}99`,
+  em_focus_shadow: "0 0 0 2px #5b9bd5",
+  em_overlay_bg: "rgba(0, 0, 0, 0.82)",
+  em_ring_subtle: "0 0 0 1px rgba(255, 255, 255, 0.08)",
+  em_flash_success: "#4f8f42",
+  em_flash_success_transparent: "#4f8f4200",
+  em_sortable_item_bg: "#2c2d31",
+  em_sortable_item_color: "#e6e7eb",
+  em_sortable_shadow:
+    "0 0 0 calc(1px / var(--scale-x, 1)) rgba(200, 200, 200, 0.1), 0 1px calc(3px / var(--scale-x, 1)) 0 rgba(0, 0, 0, 0.3)",
+  em_drag_handle_hover_bg: "rgba(255, 255, 255, 0.1)",
+  em_drag_handle_fill: "#a8a9ad",
   em_neutral: neutral
 }
 

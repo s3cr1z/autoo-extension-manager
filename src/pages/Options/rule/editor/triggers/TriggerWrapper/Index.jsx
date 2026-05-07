@@ -10,8 +10,19 @@ const TriggerWrapper = memo((props) => {
     <Style>
       <div className="header">
         <span className="header-title">{title}</span>
-        <span className="header-close">
-          <CloseSquareOutlined onClick={onClose} />
+        <span
+          className="header-close"
+          role="button"
+          tabIndex={0}
+          aria-label="Close"
+          onClick={onClose}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault()
+              onClose(e)
+            }
+          }}>
+          <CloseSquareOutlined />
         </span>
       </div>
 
@@ -51,11 +62,16 @@ const Style = styled.div`
 
       margin-right: 10px;
       font-size: 16px;
-      color: #ff4757;
+      color: var(--em-color-danger);
       cursor: pointer;
 
       &:hover {
-        color: #ff6348;
+        color: var(--em-color-danger);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--em-color-primary);
+        outline-offset: 2px;
       }
     }
   }

@@ -168,8 +168,8 @@ const Style = styled.div`
     }
 
     .ant-tag-checkable-checked {
-      border: 1px solid #0984e3;
-      background-color: #0984e3;
+      border: 1px solid var(--em-bg-brand-solid);
+      background-color: var(--em-bg-brand-solid);
     }
   }
 

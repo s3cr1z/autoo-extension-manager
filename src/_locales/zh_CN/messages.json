@@ -698,6 +698,9 @@
   "setting_popup_scale_title": {
     "message": "缩放比例"
   },
+  "setting_use_new_ui": {
+    "message": "使用新版界面"
+  },
   "setting_func_witch_group": {
     "message": "切换分组时，启用当前分组扩展，禁用其它的扩展"
   },
@@ -841,5 +844,101 @@
   },
   "end": {
     "message": "end"
+  },
+  "a11y_actions": {
+    "message": "操作"
+  },
+  "a11y_pinned_extensions": {
+    "message": "置顶扩展"
+  },
+  "a11y_enabled_extensions": {
+    "message": "已启用扩展"
+  },
+  "a11y_disabled_extensions": {
+    "message": "已禁用扩展"
+  },
+  "a11y_extensions": {
+    "message": "扩展"
+  },
+  "a11y_expand": {
+    "message": "展开"
+  },
+  "a11y_collapse": {
+    "message": "折叠"
+  },
+  "a11y_loading_extensions": {
+    "message": "正在加载扩展"
+  },
+  "a11y_loading_settings": {
+    "message": "正在加载设置"
+  },
+  "a11y_settings_content": {
+    "message": "设置内容"
+  },
+  "a11y_search": {
+    "message": "搜索"
+  },
+  "a11y_hide": {
+    "message": "隐藏"
+  },
+  "a11y_recover": {
+    "message": "恢复"
+  },
+  "a11y_edit": {
+    "message": "编辑"
+  },
+  "a11y_duplicate": {
+    "message": "复制"
+  },
+  "a11y_open_homepage": {
+    "message": "打开主页"
+  },
+  "a11y_browser_settings": {
+    "message": "浏览器设置"
+  },
+  "a11y_enable_rule": {
+    "message": "启用规则"
+  },
+  "a11y_disable_rule": {
+    "message": "禁用规则"
+  },
+  "a11y_delete_rule_confirm": {
+    "message": "确定要删除这条规则吗？"
+  },
+  "app_list_title": {
+    "message": "应用"
+  },
+  "about_storage_usage_tip": {
+    "message": "存储使用帮助"
+  },
+  "no_extensions_found": {
+    "message": "没有匹配的扩展"
+  },
+  "no_extensions_found_hint": {
+    "message": "请尝试其他搜索词。"
+  },
+  "fixed_extension_dot_tip": {
+    "message": "已置顶"
+  },
+  "pin_extension": {
+    "message": "置顶到当前分组"
+  },
+  "unpin_extension": {
+    "message": "从当前分组取消置顶"
+  },
+  "history_delete_all_confirm": {
+    "message": "确定要删除所有历史记录吗？"
+  },
+  "launch_app": {
+    "message": "启动"
+  },
+  "popup_layout_switch_to_list": {
+    "message": "切换到列表视图"
+  },
+  "popup_layout_switch_to_grid": {
+    "message": "切换到网格视图"
+  },
+  "more_operation": {
+    "message": "更多操作"
   }
 }

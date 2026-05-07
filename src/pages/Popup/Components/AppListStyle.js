@@ -38,7 +38,7 @@ export const AppListStyle = styled.div`
   }
 
   li img:focus-visible {
-    outline: 2px solid var(--em-color-primary, #337ab7);
+    outline: 2px solid var(--em-color-primary);
     outline-offset: 2px;
   }
 
@@ -52,6 +52,6 @@ export const AppListStyle = styled.div`
   }
 
   .not-enable {
-    color: var(--em-text-disabled, #cccccc);
+    color: var(--em-text-disabled);
   }
 `

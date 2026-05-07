@@ -35,16 +35,16 @@ export const AboutStyle = styled.div`
     display: flex;
     flex-direction: column;
 
-    margin-top: 50px;
+    margin-top: var(--em-space-12, 48px);
 
     .version {
-      font-size: 14px;
-      margin-bottom: 12px;
+      font-size: var(--em-font-size-base, 14px);
+      margin-bottom: var(--em-space-3, 12px);
     }
 
     .version-update {
       width: 500px;
-      margin-bottom: 12px;
+      margin-bottom: var(--em-space-3, 12px);
     }
 
     .ant-tag-has-color {
@@ -54,6 +54,11 @@ export const AboutStyle = styled.div`
     .badges-tag {
       &:hover {
         cursor: pointer;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--em-color-primary);
+        outline-offset: 2px;
       }
     }
   }
@@ -70,6 +75,11 @@ export const AboutStyle = styled.div`
       margin-left: var(--em-space-1, 5px);
       &:hover {
         color: var(--em-text-secondary, ${(props) => props.theme.fg6});
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--em-color-primary);
+        outline-offset: 2px;
       }
     }
   }

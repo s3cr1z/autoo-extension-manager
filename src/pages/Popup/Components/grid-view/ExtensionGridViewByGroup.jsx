@@ -3,6 +3,7 @@ import React, { memo, useCallback, useState } from "react"
 import classNames from "classnames"
 import styled from "styled-components"
 
+import { getLang } from ".../utils/utils"
 import { usePopupExtensionsByGroup } from "../../utils/usePopupExtensionsByGroup"
 import FoldGroupName from "../common/FoldGroupName"
 import ExtensionGridItem from "./ExtensionGridItem"
@@ -59,7 +60,10 @@ const ExtensionGridSpace = memo(({ group, options, onItemMove, groupIndex }) => 
         </span>
       )}
 
-      <ul className={classNames({ "show-list": !fold, "hide-list": fold })}>
+      <ul
+        role="list"
+        aria-label={group.name || getLang("a11y_extensions")}
+        className={classNames({ "show-list": !fold, "hide-list": fold })}>
         {group.extensions.map((item) => (
           <li key={item.id}>
             <ExtensionGridItem
@@ -87,7 +91,7 @@ const GridSpaceByGroupStyle = styled.div`
 
     &::before,
     &::after {
-      border-bottom: 1px solid ${(props) => props.theme.input_border};
+      border-bottom: 1px solid var(--em-border-strong, ${(props) => props.theme.input_border});
     }
 
     &::before {

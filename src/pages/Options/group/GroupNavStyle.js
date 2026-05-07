@@ -17,7 +17,7 @@ export const GroupNavStyle = styled.div`
     user-select: none;
 
     &:hover {
-      background-color: var(--em-color-primary, #337ab7cc);
+      background-color: var(--em-bg-hover);
     }
 
     &:hover .tab-operation {
@@ -43,10 +43,10 @@ export const GroupNavStyle = styled.div`
   }
 
   .selected-group-item {
-    background: var(--em-bg-brand-solid, #337ab7);
+    background: var(--em-bg-brand-solid);
 
     h3 {
-      color: var(--em-text-on-brand, #fff);
+      color: var(--em-text-on-brand);
     }
   }
 

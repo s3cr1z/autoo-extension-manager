@@ -92,12 +92,12 @@ const Style = styled.div`
     height: 60px;
     padding: 12px 12px 8px 12px;
 
-    border: 1px solid #e8e8e8;
-    border-radius: 4px;
+    border: 1px solid var(--em-border-default);
+    border-radius: var(--em-radius-sm, 4px);
   }
 
   .import-item-select {
-    background-color: #e5e5e5;
+    background-color: var(--em-bg-secondary);
   }
 
   .ext-title-info {
@@ -115,7 +115,7 @@ const Style = styled.div`
     }
 
     .ext-info-more {
-      color: #888;
+      color: var(--em-text-secondary);
 
       & > span {
         margin-right: 12px;

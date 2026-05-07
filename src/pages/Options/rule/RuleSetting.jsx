@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import chromeP from "webext-polyfill-kinda"
 
+import { EmptyState } from ".../design-system"
 import storage from ".../storage/sync"
 import { appendAdditionInfo, filterExtensions, isExtExtension } from ".../utils/extensionHelper.js"
 import analytics from ".../utils/googleAnalyze.js"
@@ -15,6 +16,7 @@ function RuleSetting() {
 
   // 所有的规则配置项，列表
   const [ruleConfigs, setRuleConfigs] = useState([])
+  const [ruleConfigsReady, setRuleConfigsReady] = useState(false)
 
   // 用户配置
   const [options, setOptions] = useState({})
@@ -35,6 +37,7 @@ function RuleSetting() {
 
     storage.rule.get().then((list) => {
       setRuleConfigs(list)
+      setRuleConfigsReady(true)
 
       analytics.fireEvent("rule_setting_open", {
         totalCount: list.length,
@@ -89,11 +92,15 @@ function RuleSetting() {
     <RuleSettingStyle>
       <Title title={getLang("rule_title")}></Title>
 
-      <ViewRule
-        options={options}
-        configs={ruleConfigs}
-        extensions={extensions}
-        operation={operation}></ViewRule>
+      {ruleConfigsReady && ruleConfigs.length === 0 ? (
+        <EmptyState title={getLang("rule_title")} description={getLang("rule_set_match_add")} />
+      ) : (
+        <ViewRule
+          options={options}
+          configs={ruleConfigs}
+          extensions={extensions}
+          operation={operation}></ViewRule>
+      )}
     </RuleSettingStyle>
   )
 }

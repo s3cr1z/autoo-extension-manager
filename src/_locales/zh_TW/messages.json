@@ -698,6 +698,9 @@
   "setting_popup_scale_title": {
     "message": "縮放比例"
   },
+  "setting_use_new_ui": {
+    "message": "使用新版介面"
+  },
   "setting_func_witch_group": {
     "message": "切換分組時，啓用當前分組擴展，禁用其它的擴展"
   },
@@ -841,5 +844,101 @@
   },
   "end": {
     "message": "end"
+  },
+  "a11y_actions": {
+    "message": "操作"
+  },
+  "a11y_pinned_extensions": {
+    "message": "置頂擴充功能"
+  },
+  "a11y_enabled_extensions": {
+    "message": "已啟用擴充功能"
+  },
+  "a11y_disabled_extensions": {
+    "message": "已停用擴充功能"
+  },
+  "a11y_extensions": {
+    "message": "擴充功能"
+  },
+  "a11y_expand": {
+    "message": "展開"
+  },
+  "a11y_collapse": {
+    "message": "摺疊"
+  },
+  "a11y_loading_extensions": {
+    "message": "正在載入擴充功能"
+  },
+  "a11y_loading_settings": {
+    "message": "正在載入設定"
+  },
+  "a11y_settings_content": {
+    "message": "設定內容"
+  },
+  "a11y_search": {
+    "message": "搜尋"
+  },
+  "a11y_hide": {
+    "message": "隱藏"
+  },
+  "a11y_recover": {
+    "message": "恢復"
+  },
+  "a11y_edit": {
+    "message": "編輯"
+  },
+  "a11y_duplicate": {
+    "message": "複製"
+  },
+  "a11y_open_homepage": {
+    "message": "開啟首頁"
+  },
+  "a11y_browser_settings": {
+    "message": "瀏覽器設定"
+  },
+  "a11y_enable_rule": {
+    "message": "啟用規則"
+  },
+  "a11y_disable_rule": {
+    "message": "停用規則"
+  },
+  "a11y_delete_rule_confirm": {
+    "message": "確定要刪除此規則嗎？"
+  },
+  "app_list_title": {
+    "message": "應用程式"
+  },
+  "about_storage_usage_tip": {
+    "message": "儲存空間使用說明"
+  },
+  "no_extensions_found": {
+    "message": "沒有符合的擴充功能"
+  },
+  "no_extensions_found_hint": {
+    "message": "請嘗試其他搜尋字詞。"
+  },
+  "fixed_extension_dot_tip": {
+    "message": "已置頂"
+  },
+  "pin_extension": {
+    "message": "置頂到目前群組"
+  },
+  "unpin_extension": {
+    "message": "從目前群組取消置頂"
+  },
+  "history_delete_all_confirm": {
+    "message": "確定要刪除所有歷史記錄嗎？"
+  },
+  "launch_app": {
+    "message": "啟動"
+  },
+  "popup_layout_switch_to_list": {
+    "message": "切換到列表檢視"
+  },
+  "popup_layout_switch_to_grid": {
+    "message": "切換到網格檢視"
+  },
+  "more_operation": {
+    "message": "更多操作"
   }
 }

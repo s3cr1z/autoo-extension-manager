@@ -39,7 +39,7 @@ const TargetView = memo(({ config, options, extensions }) => {
           {list.map((ext) => {
             return (
               <li key={ext.id}>
-                <img src={getIcon(ext, 64)} alt="" />
+                <img src={getIcon(ext, 64)} alt={ext.name} />
               </li>
             )
           })}

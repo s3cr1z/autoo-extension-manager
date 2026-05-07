@@ -34,7 +34,7 @@ prepare().then((props) => {
   props.params.isDarkMode = isDarkMode
 
   root.render(
-    <ThemeProvider isDarkMode={isDarkMode}>
+    <ThemeProvider mode={settingMode} isDarkMode={isDarkMode}>
       <Popup
         style={{ height: "100%" }}
         originExtensions={props.extensions}

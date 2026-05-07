@@ -27,7 +27,18 @@ const HiddenRecordView = memo(({ records, hiddenExtensionIds, recover }) => {
         <ItemStyle>
           <img src={item.icon} alt="icon" width={24} />
           <div className="hidden-record-name">{item.name}</div>
-          <Space className="hidden-record-close" onClick={(e) => menuItemOnClick(e, item)}>
+          <Space
+            className="hidden-record-close"
+            role="button"
+            tabIndex={0}
+            aria-label={`${getLang("a11y_recover")} ${item.name}`}
+            onClick={(e) => menuItemOnClick(e, item)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                menuItemOnClick(e, item)
+              }
+            }}>
             <CloseCircleOutlined />
           </Space>
         </ItemStyle>
@@ -83,6 +94,12 @@ const ItemStyle = styled.div`
 
   .hidden-record-close {
     margin-left: 8px;
-    color: #f5222d;
+    color: var(--em-color-danger);
+  }
+
+  .hidden-record-close:focus-visible {
+    outline: 2px solid var(--em-color-primary);
+    outline-offset: 2px;
+    border-radius: var(--em-radius-sm, 4px);
   }
 `

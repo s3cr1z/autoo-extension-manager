@@ -94,6 +94,6 @@ const Style = styled.div`
   }
 
   .ant-tag-checkable-checked {
-    background-color: #108ee9;
+    background-color: var(--em-bg-brand-solid);
   }
 `

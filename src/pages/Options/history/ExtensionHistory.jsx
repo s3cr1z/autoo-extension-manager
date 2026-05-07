@@ -138,16 +138,36 @@ const ExtensionHistory = memo(({ records, hiddenExtensionIds, loading }) => {
         return (
           <span className="column-name">
             <div className="column-name-title">
-              <img src={record.icon} alt="" width={16} height={16} />
+              <img src={record.icon} alt={showName} width={16} height={16} />
               <span>{showName}</span>
               <ExtensionChannelLabel
                 channel={record.__extension__?.channel}></ExtensionChannelLabel>
             </div>
             <div className="column-name-solo">
-              <Space onClick={(e) => solo(e, record)}>
+              <Space
+                role="button"
+                tabIndex={0}
+                aria-label={`${getLang("a11y_search")} ${showName}`}
+                onClick={(e) => solo(e, record)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault()
+                    solo(e, record)
+                  }
+                }}>
                 <EyeOutlined />
               </Space>
-              <Space onClick={(e) => hide(e, record)}>
+              <Space
+                role="button"
+                tabIndex={0}
+                aria-label={`${getLang("a11y_hide")} ${showName}`}
+                onClick={(e) => hide(e, record)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault()
+                    hide(e, record)
+                  }
+                }}>
                 <EyeInvisibleOutlined />
               </Space>
             </div>
@@ -273,7 +293,7 @@ const ExtensionHistory = memo(({ records, hiddenExtensionIds, loading }) => {
           {/* 清空记录 */}
           <Popconfirm
             title="Clear History Data"
-            description="Are you sure to delete all the history records?"
+            description={getLang("history_delete_all_confirm")}
             onConfirm={confirmClearHistoryRecords}
             okText="Yes"
             cancelText="No">

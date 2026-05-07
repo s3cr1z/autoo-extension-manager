@@ -11,13 +11,14 @@ import React, {
 
 import { MenuOutlined, SearchOutlined, SettingOutlined } from "@ant-design/icons"
 import Icon from "@ant-design/icons/lib/components/Icon"
-import { Space, message } from "antd"
+import { message } from "antd"
 import _ from "lodash"
 
 import EdgeIcon from ".../assets/img/Microsoft_Store.svg"
 import ChromeWebStoreIcon from ".../assets/img/chrome-web-store-icon.svg"
 import DarkIcon from ".../assets/img/design-devin/Dark.svg"
 import LightIcon from ".../assets/img/design-devin/Light.svg"
+import { IconButton, Input } from ".../design-system"
 import storage from ".../storage/sync"
 import { isEdgePackage } from ".../utils/channelHelper"
 import { getLang } from ".../utils/utils"
@@ -246,13 +247,13 @@ const Header = memo((props) => {
     )
   }
 
-  const searchLabel = getLang("setting_popup_setting_search") || "Search extensions"
+  const searchLabel = getLang("setting_popup_setting_search")
   const layoutLabel =
     layout === "grid"
-      ? getLang("popup_layout_switch_to_list") || "Switch to list view"
-      : getLang("popup_layout_switch_to_grid") || "Switch to grid view"
-  const settingLabel = getLang("setting_title") || "Open settings"
-  const moreLabel = getLang("more_operation") || "More operations"
+      ? getLang("popup_layout_switch_to_list")
+      : getLang("popup_layout_switch_to_grid")
+  const settingLabel = getLang("setting_title")
+  const moreLabel = getLang("more_operation")
 
   return (
     <>
@@ -274,52 +275,28 @@ const Header = memo((props) => {
               options={options}
               onGroupChanged={onGroupChanged}></GroupDropdown>
 
-            <Space
+            <IconButton
               className="search setting-icon"
-              role="button"
-              tabIndex={0}
-              aria-label={searchLabel}
+              tooltip={searchLabel}
               aria-pressed={isShowSearch}
+              icon={<SearchOutlined aria-hidden="true" />}
               onClick={onSearchClick}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault()
-                  onSearchClick()
-                }
-              }}>
-              <SearchOutlined aria-hidden="true" />
-            </Space>
+            />
 
-            <Space
+            <IconButton
               className="layout setting-icon"
-              role="button"
-              tabIndex={0}
-              aria-label={layoutLabel}
+              tooltip={layoutLabel}
               aria-pressed={layout === "grid"}
+              icon={<Icon component={LayoutSvg} aria-hidden="true"></Icon>}
               onClick={onLayoutClick}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault()
-                  onLayoutClick()
-                }
-              }}>
-              <Icon component={LayoutSvg} aria-hidden="true"></Icon>
-            </Space>
+            />
 
-            <Space
+            <IconButton
               className="setting setting-icon"
-              role="button"
-              tabIndex={0}
-              aria-label={settingLabel}
+              tooltip={settingLabel}
+              icon={<SettingOutlined aria-hidden="true" />}
               onClick={(e) => onSettingClick(e)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault()
-                  onSettingClick(e)
-                }
-              }}>
-              <SettingOutlined aria-hidden="true" />
-            </Space>
+            />
 
             <Suspense
               fallback={
@@ -339,7 +316,7 @@ const Header = memo((props) => {
 
       {isShowSearch && (
         <SearchStyle role="search" aria-label={searchLabel}>
-          <input
+          <Input
             type="search"
             placeholder={searchLabel}
             value={searchText}
@@ -350,7 +327,7 @@ const Header = memo((props) => {
                 onStoreSearch()
               }
             }}
-            ref={searchInputRef}></input>
+            ref={searchInputRef}></Input>
           {buildStoreSearchIcon()}
         </SearchStyle>
       )}

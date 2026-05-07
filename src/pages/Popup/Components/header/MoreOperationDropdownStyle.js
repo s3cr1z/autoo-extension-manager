@@ -17,13 +17,13 @@ export const MoreOperationDropdownSnapshotStyle = styled.div`
 
   .snapshot-rename-btn {
     &:hover {
-      color: #1890ff;
+      color: var(--em-color-primary);
     }
   }
 
   .snapshot-close-btn {
     &:hover {
-      color: red;
+      color: var(--em-color-danger);
     }
   }
 `

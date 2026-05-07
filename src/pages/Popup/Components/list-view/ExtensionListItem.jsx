@@ -8,12 +8,12 @@ import {
   ToolOutlined,
   UnlockOutlined
 } from "@ant-design/icons"
-import { Button, Popconfirm, Switch, Tooltip, message } from "antd"
+import { message } from "antd"
 import classNames from "classnames"
 
 import "./ExtensionListItem.css"
 
-import Badge from ".../design-system/components/Badge"
+import { Badge, IconButton, Switch } from ".../design-system"
 import { ManualEnableCounter } from ".../storage/local/ManualEnableCounter"
 import { getHomepageUrl, getIcon, getOriginSettingUrl } from ".../utils/extensionHelper.js"
 import { getLang } from ".../utils/utils"
@@ -122,8 +122,10 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
   // 如果存在别名，则显示别名
   const showName = item.__attach__?.alias ? item.__attach__?.alias : item.name
 
-  const enableLabel = `${itemEnable ? "Disable" : "Enable"} ${showName}`
-  const pinnedLabel = getLang("fixed_extension_dot_tip") || "Pinned"
+  const enableLabel = `${
+    itemEnable ? getLang("disable_extension") : getLang("enable_extension")
+  } ${showName}`
+  const pinnedLabel = getLang("fixed_extension_dot_tip")
 
   return (
     <div
@@ -136,7 +138,7 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
       {contextHolder}
 
       <div className="list-item-img-box">
-        <img src={getIcon(item, 128)} alt="" />
+        <img src={getIcon(item, 128)} alt={showName} />
         {itemPined && isShowDotOfFixedExtension && (
           <Badge tone="success" srLabel={pinnedLabel} className="list-item-fix-dot" />
         )}
@@ -164,14 +166,14 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
     if (!isHover) {
       return null
     } else {
-      const switchLabel = `${itemEnable ? "Disable" : "Enable"} ${showName}`
-      const lockLabel = itemPined
-        ? getLang("unpin_extension") || "Unpin from current group"
-        : getLang("pin_extension") || "Pin to current group"
-      const settingLabel = `${getLang("setting_title") || "Settings"}: ${showName}`
-      const deleteLabel = `${getLang("delete") || "Delete"}: ${showName}`
-      const homeLabel = `${getLang("home_page") || "Open homepage"}: ${showName}`
-      const toolLabel = `${getLang("chrome_extension_setting") || "Browser settings"}: ${showName}`
+      const switchLabel = `${
+        itemEnable ? getLang("disable_extension") : getLang("enable_extension")
+      } ${showName}`
+      const lockLabel = itemPined ? getLang("unpin_extension") : getLang("pin_extension")
+      const settingLabel = `${getLang("setting_title")}: ${showName}`
+      const deleteLabel = `${getLang("delete")}: ${showName}`
+      const homeLabel = `${getLang("a11y_open_homepage")}: ${showName}`
+      const toolLabel = `${getLang("a11y_browser_settings")}: ${showName}`
       return (
         <div className="li-operation">
           <Switch
@@ -182,63 +184,43 @@ const ExtensionListItem = memo(({ item, enabled, options, onItemEnableChanged })
             onChange={(e) => onSwitchChange(e, item)}></Switch>
 
           {canLock && (
-            <Tooltip title={lockLabel} mouseEnterDelay={0.4}>
-              <Button
-                type="text"
-                aria-label={lockLabel}
-                icon={itemPined ? <LockOutlined /> : <UnlockOutlined />}
-                onClick={() => setItemPined(!itemPined)}
-              />
-            </Tooltip>
+            <IconButton
+              tooltip={lockLabel}
+              aria-label={lockLabel}
+              icon={itemPined ? <LockOutlined /> : <UnlockOutlined />}
+              onClick={() => setItemPined(!itemPined)}
+            />
           )}
 
-          <Tooltip title={settingLabel} mouseEnterDelay={0.4}>
-            <Button
-              disabled={!existOptionPage}
-              type="text"
-              aria-label={settingLabel}
-              icon={<SettingOutlined />}
-              onClick={(e) => handleSettingButtonClick(e, item)}
-            />
-          </Tooltip>
+          <IconButton
+            disabled={!existOptionPage}
+            tooltip={settingLabel}
+            aria-label={settingLabel}
+            icon={<SettingOutlined />}
+            onClick={(e) => handleSettingButtonClick(e, item)}
+          />
 
-          {/* <Popconfirm
-            title={getLang("remove_extension")}
-            description={getLang("remove_extension_confirm", item.shortName)}
-            onConfirm={(e) => confirmDeleteExtension(e, item)}
-            onCancel={(e) => cancelDeleteExtension(e, item)}
-            onClick={(e) => setIsInteractive(true)}
-            okText="Yes"
-            cancelText="Cancel">
-            <Button type="text" icon={<DeleteOutlined />} />
-          </Popconfirm> */}
+          <IconButton
+            tooltip={deleteLabel}
+            aria-label={deleteLabel}
+            icon={<DeleteOutlined />}
+            onClick={(e) => confirmDeleteExtension(e, item)}
+          />
 
-          <Tooltip title={deleteLabel} mouseEnterDelay={0.4}>
-            <Button
-              type="text"
-              aria-label={deleteLabel}
-              icon={<DeleteOutlined />}
-              onClick={(e) => confirmDeleteExtension(e, item)}
-            />
-          </Tooltip>
+          <IconButton
+            disabled={!existHomePage}
+            tooltip={homeLabel}
+            aria-label={homeLabel}
+            icon={<HomeOutlined />}
+            onClick={(e) => handleHomeButtonClick(e, item)}
+          />
 
-          <Tooltip title={homeLabel} mouseEnterDelay={0.4}>
-            <Button
-              disabled={!existHomePage}
-              type="text"
-              aria-label={homeLabel}
-              icon={<HomeOutlined />}
-              onClick={(e) => handleHomeButtonClick(e, item)}
-            />
-          </Tooltip>
-
-          <Tooltip title={toolLabel} mouseEnterDelay={0.4}>
-            <Button
-              type="text"
-              aria-label={toolLabel}
-              icon={<ToolOutlined />}
-              onClick={(e) => handleOriginSettingButtonClick(e, item)}></Button>
-          </Tooltip>
+          <IconButton
+            tooltip={toolLabel}
+            aria-label={toolLabel}
+            icon={<ToolOutlined />}
+            onClick={(e) => handleOriginSettingButtonClick(e, item)}
+          />
         </div>
       )
     }

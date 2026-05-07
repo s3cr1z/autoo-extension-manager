@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import classNames from "classnames"
 import { styled } from "styled-components"
 
+import { EmptyState } from ".../design-system"
 import { getPopupWidth } from ".../pages/Popup/utils/popupLayoutHelper"
 import { getLang } from ".../utils/utils"
 import { isExtExtension } from "../../../utils/extensionHelper.js"
@@ -122,21 +123,12 @@ function IndexPopup({ originExtensions, options, params }) {
       pluginExtensions.length === 0 && (!isShowAppExtension || appExtensions.length === 0)
     if (noExtensions) {
       return (
-        <div
+        <EmptyState
           role="status"
           aria-live="polite"
-          style={{
-            padding: "24px 16px",
-            textAlign: "center",
-            color: "var(--em-text-secondary)"
-          }}>
-          <div style={{ fontWeight: 600, fontSize: 14 }}>
-            {getLang("no_extensions_found") || "No extensions match"}
-          </div>
-          <div style={{ marginTop: 4, fontSize: 12 }}>
-            {getLang("no_extensions_found_hint") || "Try a different search term."}
-          </div>
-        </div>
+          title={getLang("no_extensions_found")}
+          description={getLang("no_extensions_found_hint")}
+        />
       )
     }
     if (!layout || layout === "list") {
@@ -189,7 +181,7 @@ function IndexPopup({ originExtensions, options, params }) {
           "extension-container",
           { "extension-container-grid": layout === "grid" }
         ])}
-        aria-label="Extensions">
+        aria-label={getLang("a11y_extensions")}>
         {getExtensionDisplay()}
         {isShowAppExtension && <AppList items={appExtensions}></AppList>}
       </main>
@@ -245,15 +237,15 @@ const Style = styled.div`
 
   .extension-container::-webkit-scrollbar-thumb {
     border-radius: var(--em-radius-full, 9999px);
-    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: var(--em-shadow-inset);
     opacity: 1;
-    background: var(--em-border-strong, #cccccc);
+    background: var(--em-border-strong);
   }
 
   .extension-container::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: var(--em-shadow-inset);
     border-radius: var(--em-radius-full, 9999px);
-    background: var(--em-border-subtle, #cccccc33);
+    background: var(--em-border-subtle);
   }
 
   .extension-container-grid::-webkit-scrollbar {

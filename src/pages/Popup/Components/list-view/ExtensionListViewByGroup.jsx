@@ -81,7 +81,6 @@ const ExtensionListSpace = memo(({ group, options, onItemEnableChanged }) => {
 
 const Style = styled.ul`
   li {
-    /* border: 1px solid #cccccc55; */
     margin-bottom: 1px;
   }
 
@@ -98,7 +97,7 @@ const Style = styled.ul`
 
     &::before,
     &::after {
-      border-bottom: 1px solid ${(props) => props.theme.input_border};
+      border-bottom: 1px solid var(--em-border-strong, ${(props) => props.theme.input_border});
     }
 
     &::before {
