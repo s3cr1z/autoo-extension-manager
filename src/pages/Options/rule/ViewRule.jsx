@@ -1,8 +1,9 @@
-import React, { memo, useEffect, useState } from "react"
+import React, { memo, useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 
 import { Button, Table, message } from "antd"
 
+import { EmptyState } from ".../design-system"
 import { getLang } from ".../utils/utils"
 import { sendMessage } from "../../../utils/messageHelper"
 import EditRule from "./EditRule"
@@ -11,8 +12,6 @@ import ActionView from "./view/ActionView"
 import MatchView from "./view/MatchView"
 import OperationView from "./view/OperationView"
 import TargetView from "./view/TargetView"
-
-const { Map } = require("immutable")
 
 const { Column } = Table
 
@@ -29,14 +28,7 @@ const ViewRule = memo((props) => {
   // 正在编辑的规则
   const [editingConfig, setEditingConfig] = useState(null)
   const [selectedRuleId, setSelectedRuleId] = useState(null)
-
-  // 规则列表
-  const [records, setRecords] = useState()
-  useEffect(() => {
-    if (configs) {
-      setRecords(configs.map((c, index) => Map(c).set("index", index).toJS()))
-    }
-  }, [configs])
+  const records = useMemo(() => configs?.map((config, index) => ({ ...config, index })), [configs])
 
   // 处理 URL 从的参数 id，如果存在，则高亮显示这条规则
   useEffect(() => {
@@ -55,13 +47,13 @@ const ViewRule = memo((props) => {
 
   // 如果有 selectedRuleId 但没有找到，则给出提示
   useEffect(() => {
-    if (!selectedRuleId || records === undefined || records.length === 0) {
+    if (!selectedRuleId || configs === undefined || configs.length === 0) {
       return
     }
-    if (!records.find((c) => c.id === selectedRuleId)) {
+    if (!configs.find((c) => c.id === selectedRuleId)) {
       messageApi.warning(`Rule ${selectedRuleId} not found`)
     }
-  }, [records, selectedRuleId, messageApi])
+  }, [configs, selectedRuleId, messageApi])
 
   const onAdd = () => {
     setEditingConfig({})
@@ -131,71 +123,73 @@ const ViewRule = memo((props) => {
   return (
     <Style>
       {contextHolder}
-      <Table
-        dataSource={records}
-        rowKey="id"
-        size="small"
-        pagination={{ position: ["bottomCenter"], hideOnSinglePage: true }}
-        rowClassName={(record, index) => {
-          if (record.id === selectedRuleId) {
-            return "rule-row-selected"
-          } else {
-            return ""
-          }
-        }}>
-        <Column
-          title={getLang("column_index")}
-          dataIndex="index"
-          width={60}
-          align="center"
-          render={(index, record) => {
+      {records?.length > 0 && (
+        <Table
+          dataSource={records}
+          rowKey="id"
+          size="small"
+          pagination={{ position: ["bottomCenter"], hideOnSinglePage: true }}
+          rowClassName={(record, index) => {
             if (record.id === selectedRuleId) {
-              return <span>✔</span>
+              return "rule-row-selected"
+            } else {
+              return ""
             }
-            return <span>{index + 1}</span>
-          }}
-        />
-        <Column
-          title={getLang("rule_column_match")}
-          dataIndex="match"
-          render={(match, record) => {
-            return <MatchView config={match} options={options}></MatchView>
-          }}
-        />
-        <Column
-          title={getLang("rule_column_extensions")}
-          dataIndex="target"
-          render={(target, record) => {
-            return <TargetView config={target} options={options} extensions={extensions} />
-          }}
-        />
+          }}>
+          <Column
+            title={getLang("column_index")}
+            dataIndex="index"
+            width={60}
+            align="center"
+            render={(index, record) => {
+              if (record.id === selectedRuleId) {
+                return <span>✔</span>
+              }
+              return <span>{index + 1}</span>
+            }}
+          />
+          <Column
+            title={getLang("rule_column_match")}
+            dataIndex="match"
+            render={(match, record) => {
+              return <MatchView config={match} options={options}></MatchView>
+            }}
+          />
+          <Column
+            title={getLang("rule_column_extensions")}
+            dataIndex="target"
+            render={(target, record) => {
+              return <TargetView config={target} options={options} extensions={extensions} />
+            }}
+          />
 
-        <Column
-          title={getLang("rule_column_action")}
-          dataIndex="action"
-          width={200}
-          render={(action, record) => {
-            return <ActionView config={action} />
-          }}
-        />
+          <Column
+            title={getLang("rule_column_action")}
+            dataIndex="action"
+            width={200}
+            render={(action, record) => {
+              return <ActionView config={action} />
+            }}
+          />
 
-        <Column
-          title={getLang("rule_column_operation")}
-          dataIndex="id"
-          width={400}
-          render={(id, record) => {
-            return (
-              <OperationView
-                record={record}
-                onEdit={onEdit}
-                onDuplicate={onDuplicate}
-                onDelete={onDelete}
-                onEnabled={onEnabled}
-              />
-            )
-          }}
-        />
-      </Table>
+          <Column
+            title={getLang("rule_column_operation")}
+            dataIndex="id"
+            width={400}
+            render={(id, record) => {
+              return (
+                <OperationView
+                  record={record}
+                  onEdit={onEdit}
+                  onDuplicate={onDuplicate}
+                  onDelete={onDelete}
+                  onEnabled={onEnabled}
+                />
+              )
+            }}
+          />
+        </Table>
+      )}
 
       <div className="button-group">
         {!editingConfig && (
@@ -221,6 +215,9 @@ const ViewRule = memo((props) => {
           extensions={extensions}
           onSave={onSave}
           onCancel={onCancel}></EditRule>
+      )}
+      {configs?.length === 0 && !editingConfig && (
+        <EmptyState title={getLang("rule_title")} description={getLang("rule_set_match_add")} />
       )}
     </Style>
   )

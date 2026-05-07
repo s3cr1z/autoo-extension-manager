@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 
 import chromeP from "webext-polyfill-kinda"
 
-import { EmptyState } from ".../design-system"
 import storage from ".../storage/sync"
 import { appendAdditionInfo, filterExtensions, isExtExtension } from ".../utils/extensionHelper.js"
 import analytics from ".../utils/googleAnalyze.js"
@@ -92,9 +91,7 @@ function RuleSetting() {
     <RuleSettingStyle>
       <Title title={getLang("rule_title")}></Title>
 
-      {ruleConfigsReady && ruleConfigs.length === 0 ? (
-        <EmptyState title={getLang("rule_title")} description={getLang("rule_set_match_add")} />
-      ) : (
+      {ruleConfigsReady && (
         <ViewRule
           options={options}
           configs={ruleConfigs}
