@@ -131,71 +131,73 @@ const ViewRule = memo((props) => {
   return (
     <Style>
       {contextHolder}
-      <Table
-        dataSource={records}
-        rowKey="id"
-        size="small"
-        pagination={{ position: ["bottomCenter"], hideOnSinglePage: true }}
-        rowClassName={(record, index) => {
-          if (record.id === selectedRuleId) {
-            return "rule-row-selected"
-          } else {
-            return ""
-          }
-        }}>
-        <Column
-          title={getLang("column_index")}
-          dataIndex="index"
-          width={60}
-          align="center"
-          render={(index, record) => {
+      {records?.length > 0 && (
+        <Table
+          dataSource={records}
+          rowKey="id"
+          size="small"
+          pagination={{ position: ["bottomCenter"], hideOnSinglePage: true }}
+          rowClassName={(record, index) => {
             if (record.id === selectedRuleId) {
-              return <span>✔</span>
+              return "rule-row-selected"
+            } else {
+              return ""
             }
-            return <span>{index + 1}</span>
-          }}
-        />
-        <Column
-          title={getLang("rule_column_match")}
-          dataIndex="match"
-          render={(match, record) => {
-            return <MatchView config={match} options={options}></MatchView>
-          }}
-        />
-        <Column
-          title={getLang("rule_column_extensions")}
-          dataIndex="target"
-          render={(target, record) => {
-            return <TargetView config={target} options={options} extensions={extensions} />
-          }}
-        />
+          }}>
+          <Column
+            title={getLang("column_index")}
+            dataIndex="index"
+            width={60}
+            align="center"
+            render={(index, record) => {
+              if (record.id === selectedRuleId) {
+                return <span>✔</span>
+              }
+              return <span>{index + 1}</span>
+            }}
+          />
+          <Column
+            title={getLang("rule_column_match")}
+            dataIndex="match"
+            render={(match, record) => {
+              return <MatchView config={match} options={options}></MatchView>
+            }}
+          />
+          <Column
+            title={getLang("rule_column_extensions")}
+            dataIndex="target"
+            render={(target, record) => {
+              return <TargetView config={target} options={options} extensions={extensions} />
+            }}
+          />
 
-        <Column
-          title={getLang("rule_column_action")}
-          dataIndex="action"
-          width={200}
-          render={(action, record) => {
-            return <ActionView config={action} />
-          }}
-        />
+          <Column
+            title={getLang("rule_column_action")}
+            dataIndex="action"
+            width={200}
+            render={(action, record) => {
+              return <ActionView config={action} />
+            }}
+          />
 
-        <Column
-          title={getLang("rule_column_operation")}
-          dataIndex="id"
-          width={400}
-          render={(id, record) => {
-            return (
-              <OperationView
-                record={record}
-                onEdit={onEdit}
-                onDuplicate={onDuplicate}
-                onDelete={onDelete}
-                onEnabled={onEnabled}
-              />
-            )
-          }}
-        />
-      </Table>
+          <Column
+            title={getLang("rule_column_operation")}
+            dataIndex="id"
+            width={400}
+            render={(id, record) => {
+              return (
+                <OperationView
+                  record={record}
+                  onEdit={onEdit}
+                  onDuplicate={onDuplicate}
+                  onDelete={onDelete}
+                  onEnabled={onEnabled}
+                />
+              )
+            }}
+          />
+        </Table>
+      )}
 
       <div className="button-group">
         {!editingConfig && (

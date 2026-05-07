@@ -92,14 +92,13 @@ function RuleSetting() {
     <RuleSettingStyle>
       <Title title={getLang("rule_title")}></Title>
 
-      {ruleConfigsReady && ruleConfigs.length === 0 ? (
+      <ViewRule
+        options={options}
+        configs={ruleConfigs}
+        extensions={extensions}
+        operation={operation}></ViewRule>
+      {ruleConfigsReady && ruleConfigs.length === 0 && (
         <EmptyState title={getLang("rule_title")} description={getLang("rule_set_match_add")} />
-      ) : (
-        <ViewRule
-          options={options}
-          configs={ruleConfigs}
-          extensions={extensions}
-          operation={operation}></ViewRule>
       )}
     </RuleSettingStyle>
   )
