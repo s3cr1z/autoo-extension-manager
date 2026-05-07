@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react"
+import React, { memo, useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 
 import { Button, Table, message } from "antd"
@@ -28,6 +28,7 @@ const ViewRule = memo((props) => {
   // 正在编辑的规则
   const [editingConfig, setEditingConfig] = useState(null)
   const [selectedRuleId, setSelectedRuleId] = useState(null)
+  const records = useMemo(() => configs?.map((config, index) => ({ ...config, index })), [configs])
 
   // 处理 URL 从的参数 id，如果存在，则高亮显示这条规则
   useEffect(() => {
@@ -122,9 +123,9 @@ const ViewRule = memo((props) => {
   return (
     <Style>
       {contextHolder}
-      {configs?.length > 0 && (
+      {records?.length > 0 && (
         <Table
-          dataSource={configs}
+          dataSource={records}
           rowKey="id"
           size="small"
           pagination={{ position: ["bottomCenter"], hideOnSinglePage: true }}
@@ -137,9 +138,10 @@ const ViewRule = memo((props) => {
           }}>
           <Column
             title={getLang("column_index")}
+            dataIndex="index"
             width={60}
             align="center"
-            render={(_, record, index) => {
+            render={(index, record) => {
               if (record.id === selectedRuleId) {
                 return <span>✔</span>
               }
